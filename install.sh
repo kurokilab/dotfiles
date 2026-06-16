@@ -112,8 +112,8 @@ sync_tree() {
 # ---------------------------------------------------------------------------
 
 install_wallpaper() {
-    echo ":: Syncing wallpaper..."
-    sync_file "${DOTFILES_DIR}/wallpapers.jpg" "${HOME}/Wallpapers/default.jpg"
+    echo ":: Syncing wallpapers..."
+    sync_tree "${DOTFILES_DIR}/wallpapers" "${HOME}/Wallpapers"
 }
 
 install_deps() {

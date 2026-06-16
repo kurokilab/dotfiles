@@ -128,6 +128,10 @@ static const char *dmenucmd[] = { "dmenu_run", "-b", "-fn", dmenufont, "-nb", no
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *obsidiancmd[] = { "obsidian", NULL };
 
+/* pick a random wallpaper from ~/Wallpapers (.jpg/.jpeg/.png) and set it */
+static const char *randwallcmd[] = { "/bin/sh", "-c",
+	"feh --bg-scale \"$(find ~/Wallpapers -maxdepth 1 -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) | shuf -n1)\"", NULL };
+
 /* volume control (5% step) */
 static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
@@ -144,6 +148,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
     { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = obsidiancmd } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = randwallcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

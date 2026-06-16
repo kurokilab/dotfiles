@@ -34,7 +34,7 @@ Additional configured applications: cmus, cava, fastfetch.
 ```
 .
 ├── install.sh        installer / updater
-├── wallpapers.jpg    default wallpaper
+├── wallpapers/       wallpapers synced into ~/Wallpapers (random pick at login)
 ├── home/             files installed into ~
 │   ├── .xinitrc      X session startup        → ~/.xinitrc
 │   ├── .zshrc        shell configuration      → ~/.zshrc
@@ -74,7 +74,7 @@ A full run will:
    applications above).
 2. Clone, configure (`vxwm/config.h`), build, and install vxwm and the `rvx`
    helper into `/usr/local/bin`.
-3. Sync the wallpaper, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries, and
+3. Sync the wallpapers, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries, and
    `.zshrc` into the home directory.
 4. Install oh-my-zsh (unattended) and set zsh as the default shell.
 5. Install `ly/config.ini` to `/etc/ly/config.ini` and enable
@@ -105,7 +105,11 @@ and vxwm are already in place.
 
 ## Notes
 
-- Keyboard layout is set to `us,ru` toggled with `Alt+Shift` (see `.xinitrc`).
+- Keyboard layout is set to `us,ru` toggled with `Caps Lock` (see `.xinitrc`).
+- Wallpapers live in `~/Wallpapers`; `.xinitrc` picks one at random (`.jpg`,
+  `.jpeg`, `.png`) on each session start, and `Super+W` reshuffles to a new
+  random one on the fly. Drop images into the repo's `wallpapers/` directory and
+  re-run the installer to add more.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
 - vxwm is configured at compile time; edit `vxwm/config.h` and re-run the

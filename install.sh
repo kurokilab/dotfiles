@@ -220,7 +220,18 @@ set_default_shell() {
         return
     fi
 
-    if [ "${SHELL:-}" = "${zsh_path}" ]; then
+    # zsh must be listed in /etc/shells, otherwise chsh refuses and (worse)
+    # some PAM setups reject logins for a user whose shell is "invalid".
+    if ! grep -qxF "${zsh_path}" /etc/shells 2>/dev/null; then
+        echo "   ${zsh_path} not in /etc/shells, adding it"
+        echo "${zsh_path}" | sudo tee -a /etc/shells >/dev/null
+    fi
+
+    # Check the *actual* login shell from /etc/passwd, not $SHELL: the env var
+    # reflects the current process's shell, not what's configured for the user.
+    local current_shell
+    current_shell="$(getent passwd "${USER}" | cut -d: -f7)"
+    if [ "${current_shell}" = "${zsh_path}" ]; then
         echo "   already ${zsh_path}, skipping"
         return
     fi

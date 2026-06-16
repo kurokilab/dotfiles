@@ -127,6 +127,11 @@ static const char *dmenucmd[] = { "dmenu_run", "-b", "-fn", dmenufont, "-nb", no
 
 static const char *termcmd[]  = { "alacritty", NULL };
 
+/* volume control (5% step) */
+static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+
 #if ZOOM
 static const char *zoomin[] = { "vcompmgr", "-Z", "+0.15", NULL }; // zoom in
 static const char *zoomout[] = { "vcompmgr", "-Z", "-0.15", NULL }; // zoom out
@@ -135,8 +140,8 @@ static const char *zoomreset[] = { "vcompmgr", "-Z", "1", NULL }; // set zoom to
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-  { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+    { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -144,9 +149,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, swapmaster,     {0} },
+	{ MODKEY|ShiftMask,             XK_Return, swapmaster,     {0} },
 	{ MODKEY,                       XK_0,      view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -167,7 +172,10 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_r,            quit,     {0} },
+	{ MODKEY,                       XK_bracketright, spawn,    {.v = volupcmd } },
+	{ MODKEY,                       XK_bracketleft,  spawn,    {.v = voldowncmd } },
+	{ MODKEY|ShiftMask,             XK_m,            spawn,    {.v = volmutecmd } },
 #if XRDB
   { MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 #endif
@@ -175,7 +183,7 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 #endif
 #if ENHANCED_TOGGLE_FLOATING
-  { MODKEY,                       XK_q,      enhancedtogglefloating, {0} },
+  { MODKEY,                       XK_c,      enhancedtogglefloating, {0} },
 #endif
 #if GAPS
   { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },

@@ -175,8 +175,7 @@ install_gtkrc2() {
 
 install_configs() {
     echo ":: Syncing ~/.config entries..."
-    # ly.config.ini is a system file handled by setup_ly, keep it out of ~/.config
-    sync_tree "${DOTFILES_DIR}/config" "${HOME}/.config" "ly.config.ini"
+    sync_tree "${DOTFILES_DIR}/config" "${HOME}/.config"
 }
 
 setup_nnn() {
@@ -242,7 +241,7 @@ set_default_shell() {
 setup_ly() {
     echo ":: Configuring ly..."
 
-    local src="${DOTFILES_DIR}/config/ly.config.ini"
+    local src="${DOTFILES_DIR}/ly/config.ini"
     local dst="/etc/ly/config.ini"
 
     if [ ! -f "${src}" ]; then

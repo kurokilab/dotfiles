@@ -42,6 +42,8 @@ fastfetch, keepassxc, obsidian, chromium.
 │   └── gtkrc-2.0     GTK2 dark theme          → ~/.gtkrc-2.0
 ├── vxwm/
 │   └── config.h      vxwm build-time configuration
+├── ly/
+│   └── config.ini    ly display manager config → /etc/ly/config.ini
 └── config/           mirrored into ~/.config
     ├── alacritty/
     ├── nvim/
@@ -50,8 +52,7 @@ fastfetch, keepassxc, obsidian, chromium.
     ├── nnn/
     ├── Thunar/
     ├── cmus/  cava/  fastfetch/
-    ├── gtk-3.0/  gtk-4.0/
-    └── ly.config.ini  → installed to /etc/ly/config.ini
+    └── gtk-3.0/  gtk-4.0/
 ```
 
 ## Requirements
@@ -77,7 +78,7 @@ A full run will:
 3. Sync the wallpaper, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries, and
    `.zshrc` into the home directory.
 4. Install oh-my-zsh (unattended) and set zsh as the default shell.
-5. Install `config/ly.config.ini` to `/etc/ly/config.ini` and enable
+5. Install `ly/config.ini` to `/etc/ly/config.ini` and enable
    `ly@tty2.service`.
 
 After installation, ly starts at the next boot. To start the session manually

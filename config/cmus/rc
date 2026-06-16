@@ -1,0 +1,23 @@
+# cmus configuration
+# synced to ~/.config/cmus/rc by install.sh
+# note: cmus `set` does not allow spaces around '='
+
+# --- look & feel --------------------------------------------------------
+colorscheme gruvbox
+
+set format_current=%a - %l - %t
+set format_playlist=%-25%a %3n. %t%= %y %d
+set format_title=%a - %t
+set format_trackwin=%3n. %t%= %d
+
+set show_remaining_time=true
+set set_term_title=true
+
+# --- playback -----------------------------------------------------------
+set repeat=false
+set shuffle=false
+set continue=true
+set softvol=false
+
+# pick pipewire/pulse first, fall back to alsa if unavailable
+set output_plugin=pulse

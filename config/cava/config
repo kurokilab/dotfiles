@@ -1,0 +1,68 @@
+# ~/.config/cava/config — managed by dotfiles
+# Console audio visualizer, tuned for a Gruvbox dark setup.
+
+[general]
+# Refresh rate. 60 is smooth; bump to 144 if your display/compositor allows.
+framerate = 60
+
+# bars = 0 auto-detects the bar count from the terminal width; bar_width and
+# bar_spacing set the thickness of each bar and the gap between them.
+# autosens auto-scales sensitivity; overshoot adds headroom above the peak.
+autosens = 1
+overshoot = 0
+bars = 0
+bar_width = 2
+bar_spacing = 1
+
+# Frequency range of the visualizer in Hz. 50–10000 keeps the bass punchy
+# without wasting bars on inaudible highs.
+lower_cutoff_freq = 50
+higher_cutoff_freq = 10000
+
+
+[input]
+# PulseAudio / PipeWire-pulse. "auto" picks the default monitor source, which
+# captures whatever is currently playing (cmus, mpv, browser, etc.).
+method = pulse
+source = auto
+
+
+[output]
+method = ncurses
+channels = stereo
+mono_option = average
+
+# Smooth vertical resolution using unicode partial blocks.
+ascii_max_range = 1000
+
+
+[color]
+# Gruvbox dark gradient (bass = warm green, treble = hot red/orange).
+gradient = 1
+gradient_count = 6
+gradient_color_1 = '#b8bb26'
+gradient_color_2 = '#98971a'
+gradient_color_3 = '#d79921'
+gradient_color_4 = '#fabd2f'
+gradient_color_5 = '#fe8019'
+gradient_color_6 = '#fb4934'
+
+# Match the terminal background instead of a hard color.
+background = default
+
+
+[smoothing]
+# How fast bars fall back down. Lower = snappier, higher = more fluid.
+noise_reduction = 77
+monstercat = 1
+waves = 0
+
+
+[eq]
+# Per-band gain (bass → treble). Slight bass lift, gentle treble taper so the
+# whole spectrum reads evenly instead of being bass-dominated.
+1 = 1.2
+2 = 1.0
+3 = 1.0
+4 = 0.9
+5 = 0.85

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>open-terminal-here</unique-id>
+	<command>alacritty --working-directory %f</command>
+	<description>Open alacritty in the selected folder</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>nnn</icon>
+	<name>Open NNN Here</name>
+	<submenu></submenu>
+	<unique-id>open-nnn-here</unique-id>
+	<command>alacritty --working-directory %f -e nnn</command>
+	<description>Open the nnn file manager in the selected folder</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>edit-find</icon>
+	<name>Edit in Neovim</name>
+	<submenu></submenu>
+	<unique-id>edit-in-nvim</unique-id>
+	<command>alacritty -e nvim %f</command>
+	<description>Open the selected file in Neovim</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<other-files/>
+	<text-files/>
+</action>
+</actions>

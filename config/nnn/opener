@@ -97,7 +97,7 @@ case "$mime" in
         open_gui "$f" mpv vlc ;;
 
     application/pdf)
-        open_gui "$f" zathura mupdf chromium ;;
+        open_gui "$f" mupdf chromium ;;
 
     application/zip | application/x-tar | application/gzip | \
     application/x-bzip2 | application/x-xz | application/zstd | \
@@ -114,7 +114,7 @@ case "$mime" in
             htm|html|xhtml)
                 open_gui "$f" chromium firefox ;;
             epub|mobi)
-                open_gui "$f" zathura mupdf ;;
+                open_gui "$f" mupdf ;;
             *)
                 open_gui "$f" ;;        # → xdg-open
         esac ;;

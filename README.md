@@ -27,8 +27,7 @@ up yet.
 | Wallpaper        | feh                                            |
 | Theming          | Adwaita-dark (GTK 2/3/4, Qt via `gtk3` portal) |
 
-Additional configured applications: cmus, cava, mpv/vlc, zathura, btop,
-fastfetch, keepassxc, obsidian, chromium.
+Additional configured applications: cmus, cava, fastfetch.
 
 ## Layout
 

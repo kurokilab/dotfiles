@@ -2,6 +2,7 @@
 # Wallpaper helper.
 #   setwall           restore the last selected wallpaper (used at login)
 #   setwall random    pick a random wallpaper and remember it (keybinding)
+#   setwall select    pick any image via a file dialog and remember it
 #
 # The current choice is remembered in $STATE so it survives across sessions.
 # When nothing has been selected yet (fresh install) it falls back to
@@ -19,6 +20,15 @@ random)
 		mkdir -p "$(dirname "${STATE}")"
 		printf '%s\n' "${wall}" > "${STATE}"
 	fi
+	;;
+select)
+	wall="$(zenity --file-selection --title='Select wallpaper' \
+		--file-filter='Images | *.png *.jpg *.jpeg *.gif *.bmp *.webp' \
+		--file-filter='All files | *' 2>/dev/null)"
+	# cancelled dialog -> keep the current wallpaper untouched
+	[ -n "${wall}" ] || exit 0
+	mkdir -p "$(dirname "${STATE}")"
+	printf '%s\n' "${wall}" > "${STATE}"
 	;;
 *)
 	wall="$(cat "${STATE}" 2>/dev/null)"

@@ -110,10 +110,11 @@ and vxwm are already in place.
 - Keyboard layout is set to `us,ru` toggled with `Caps Lock` (see `.xinitrc`).
 - Wallpapers live in `~/Wallpapers` and are driven by `~/.local/bin/setwall`.
   At login `.xinitrc` restores the last selected wallpaper; `Super+W` picks a
-  new random one (`.jpg`, `.jpeg`, `.png`) and remembers it for next time. The
-  choice is stored in `~/.cache/wallpaper`; on a fresh install it defaults to
-  `default-3.png`. Drop images into the repo's `wallpapers/` directory and
-  re-run the installer to add more.
+  new random one (`.jpg`, `.jpeg`, `.png`) and `Super+Shift+W` opens a file
+  dialog (zenity) to choose any image on disk. Either way the choice is
+  remembered for next time in `~/.cache/wallpaper`; on a fresh install it
+  defaults to `default-3.png`. Drop images into the repo's `wallpapers/`
+  directory and re-run the installer to add more.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
 - vxwm is configured at compile time; edit `vxwm/config.h` and re-run the

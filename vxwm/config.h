@@ -130,6 +130,8 @@ static const char *obsidiancmd[] = { "obsidian", NULL };
 
 /* pick a random wallpaper, set it, and remember it for the next login */
 static const char *randwallcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/setwall\" random", NULL };
+/* choose any image via a file dialog and set it as wallpaper */
+static const char *selwallcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/setwall\" select", NULL };
 
 /* volume control (5% step) */
 static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
@@ -148,6 +150,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = obsidiancmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = randwallcmd } },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = selwallcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

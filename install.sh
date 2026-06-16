@@ -129,7 +129,7 @@ install_deps() {
     sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2 qt6-base \
         xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xprop xorg-xset xorg-xev xdotool xclip \
         ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono  \
-        ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom pavucontrol \
+        ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom pavucontrol zenity \
         tree nnn neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify \
         zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer \

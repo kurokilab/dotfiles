@@ -84,6 +84,10 @@ ext=""
 case "$base" in *.*) ext="${base##*.}"; ext="${ext,,}" ;; esac
 
 case "$mime" in
+    # HTML is text, but we want it rendered, not edited — catch it before text/*.
+    text/html | application/xhtml+xml)
+        open_gui "$f" chromium firefox ;;
+
     text/* | \
     application/json | application/javascript | application/xml | \
     application/x-shellscript | application/x-yaml | application/toml | \

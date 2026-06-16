@@ -26,4 +26,8 @@ random)
 	;;
 esac
 
-[ -f "${wall}" ] && exec feh --bg-scale "${wall}"
+# --image-bg flattens any alpha channel against a solid colour. Without it
+# feh alpha-blends transparent (RGBA) wallpapers over whatever is already on
+# the root window, so each switch stacks a new layer on top of the previous
+# one instead of replacing it.
+[ -f "${wall}" ] && exec feh --image-bg '#000000' --bg-scale "${wall}"

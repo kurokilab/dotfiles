@@ -133,6 +133,11 @@ static const char *randwallcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/s
 /* choose any image via a file dialog and set it as wallpaper */
 static const char *selwallcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/setwall\" select", NULL };
 
+/* select a region and copy the screenshot to the clipboard */
+static const char *shotcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/screenshot\"", NULL };
+/* select a region, copy it, and also save a PNG to ~/Pictures/Screenshots */
+static const char *shotsavecmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/screenshot\" save", NULL };
+
 /* volume control (5% step) */
 static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
@@ -151,6 +156,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_o,      spawn,          {.v = obsidiancmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = randwallcmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = selwallcmd } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = shotcmd } },
+	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = shotsavecmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

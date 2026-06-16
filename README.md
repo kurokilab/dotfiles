@@ -37,7 +37,8 @@ Additional configured applications: cmus, cava, fastfetch.
 ├── wallpapers/       wallpapers synced into ~/Wallpapers (default: default-3.png)
 ├── home/             files installed into ~
 │   ├── .local/bin/   helper scripts           → ~/.local/bin
-│   │   └── setwall   wallpaper restore/randomizer
+│   │   ├── setwall   wallpaper restore/randomizer
+│   │   └── screenshot region screenshot → clipboard
 │   ├── .xinitrc      X session startup        → ~/.xinitrc
 │   ├── .zshrc        shell configuration      → ~/.zshrc
 │   └── gtkrc-2.0     GTK2 dark theme          → ~/.gtkrc-2.0
@@ -115,6 +116,10 @@ and vxwm are already in place.
   remembered for next time in `~/.cache/wallpaper`; on a fresh install it
   defaults to `default-3.png`. Drop images into the repo's `wallpapers/`
   directory and re-run the installer to add more.
+- Screenshots are driven by `~/.local/bin/screenshot` (maim + slop).
+  `Super+Shift+S` selects a region and copies it to the clipboard;
+  `Super+Ctrl+S` also saves a timestamped PNG to `~/Pictures/Screenshots`.
+  Cancel the selection with `Esc` or right-click.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
 - vxwm is configured at compile time; edit `vxwm/config.h` and re-run the

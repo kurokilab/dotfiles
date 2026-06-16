@@ -1,0 +1,31 @@
+#!/bin/sh
+# Screenshot helper.
+#   screenshot           select a region and copy it to the clipboard
+#   screenshot save      select a region, copy it, and also save a PNG
+#
+# Region selection is handled by slop (via maim). Saved files land in
+# ~/Pictures/Screenshots with a timestamped name.
+
+SHOT_DIR="${HOME}/Pictures/Screenshots"
+
+# A temp file is used because PNG data contains NUL bytes, which cannot be
+# carried through a shell variable.
+tmp="$(mktemp --suffix=.png)"
+trap 'rm -f "${tmp}"' EXIT
+
+# maim grabs the selection; --hidecursor keeps the pointer out of the shot.
+# A non-zero exit means slop was cancelled (Esc / right-click) -> bail quietly.
+maim --select --hidecursor "${tmp}" 2>/dev/null || exit 0
+[ -s "${tmp}" ] || exit 0
+
+# Copy to the clipboard as a PNG image.
+xclip -selection clipboard -t image/png < "${tmp}"
+
+if [ "$1" = "save" ]; then
+	mkdir -p "${SHOT_DIR}"
+	file="${SHOT_DIR}/$(date +%Y-%m-%d_%H-%M-%S).png"
+	cp "${tmp}" "${file}"
+	notify-send "Screenshot" "Copied to clipboard\nSaved ${file}" 2>/dev/null
+else
+	notify-send "Screenshot" "Region copied to clipboard" 2>/dev/null
+fi

@@ -93,7 +93,10 @@ case "$mime" in
     image/*)
         open_gui "$f" feh imv sxiv nsxiv ;;
 
-    audio/* | video/*)
+    audio/*)
+        open_gui "$f" vlc mpv ;;
+
+    video/*)
         open_gui "$f" mpv vlc ;;
 
     application/pdf)

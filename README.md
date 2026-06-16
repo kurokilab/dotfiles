@@ -62,7 +62,7 @@ fastfetch, keepassxc, obsidian, chromium.
 ## Installation
 
 ```sh
-git clone <this-repo> dotfiles
+git clone https://github.com/kurokilab/dotfiles.git
 cd dotfiles
 ./install.sh
 ```

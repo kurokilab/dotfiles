@@ -1,0 +1,29 @@
+#!/bin/sh
+# Wallpaper helper.
+#   setwall           restore the last selected wallpaper (used at login)
+#   setwall random    pick a random wallpaper and remember it (keybinding)
+#
+# The current choice is remembered in $STATE so it survives across sessions.
+# When nothing has been selected yet (fresh install) it falls back to
+# default-3.png.
+
+WALL_DIR="${HOME}/Wallpapers"
+STATE="${XDG_CACHE_HOME:-${HOME}/.cache}/wallpaper"
+DEFAULT="${WALL_DIR}/default-3.png"
+
+case "$1" in
+random)
+	wall="$(find "${WALL_DIR}" -maxdepth 1 -type f \
+		\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) | shuf -n1)"
+	if [ -n "${wall}" ]; then
+		mkdir -p "$(dirname "${STATE}")"
+		printf '%s\n' "${wall}" > "${STATE}"
+	fi
+	;;
+*)
+	wall="$(cat "${STATE}" 2>/dev/null)"
+	[ -n "${wall}" ] && [ -f "${wall}" ] || wall="${DEFAULT}"
+	;;
+esac
+
+[ -f "${wall}" ] && exec feh --bg-scale "${wall}"

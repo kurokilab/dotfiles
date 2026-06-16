@@ -34,8 +34,10 @@ Additional configured applications: cmus, cava, fastfetch.
 ```
 .
 ├── install.sh        installer / updater
-├── wallpapers/       wallpapers synced into ~/Wallpapers (random pick at login)
+├── wallpapers/       wallpapers synced into ~/Wallpapers (default: default-3.png)
 ├── home/             files installed into ~
+│   ├── .local/bin/   helper scripts           → ~/.local/bin
+│   │   └── setwall   wallpaper restore/randomizer
 │   ├── .xinitrc      X session startup        → ~/.xinitrc
 │   ├── .zshrc        shell configuration      → ~/.zshrc
 │   └── gtkrc-2.0     GTK2 dark theme          → ~/.gtkrc-2.0
@@ -106,9 +108,11 @@ and vxwm are already in place.
 ## Notes
 
 - Keyboard layout is set to `us,ru` toggled with `Caps Lock` (see `.xinitrc`).
-- Wallpapers live in `~/Wallpapers`; `.xinitrc` picks one at random (`.jpg`,
-  `.jpeg`, `.png`) on each session start, and `Super+W` reshuffles to a new
-  random one on the fly. Drop images into the repo's `wallpapers/` directory and
+- Wallpapers live in `~/Wallpapers` and are driven by `~/.local/bin/setwall`.
+  At login `.xinitrc` restores the last selected wallpaper; `Super+W` picks a
+  new random one (`.jpg`, `.jpeg`, `.png`) and remembers it for next time. The
+  choice is stored in `~/.cache/wallpaper`; on a fresh install it defaults to
+  `default-3.png`. Drop images into the repo's `wallpapers/` directory and
   re-run the installer to add more.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.

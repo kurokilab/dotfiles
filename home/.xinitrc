@@ -8,8 +8,8 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null
 setxkbmap -layout us,ru -option 'grp:caps_toggle'
 
 xsetroot -cursor_name left_ptr &
-# pick a random wallpaper from ~/Wallpapers on each session start
-feh --bg-scale "$(find ~/Wallpapers -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) | shuf -n1)" &
+# restore the last selected wallpaper (default-3.png on a fresh install)
+"$HOME/.local/bin/setwall" &
 picom --backend glx &
 dunst &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

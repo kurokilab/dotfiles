@@ -128,9 +128,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-b", "-fn", dmenufont, "-nb", no
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *obsidiancmd[] = { "obsidian", NULL };
 
-/* pick a random wallpaper from ~/Wallpapers (.jpg/.jpeg/.png) and set it */
-static const char *randwallcmd[] = { "/bin/sh", "-c",
-	"feh --bg-scale \"$(find ~/Wallpapers -maxdepth 1 -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) | shuf -n1)\"", NULL };
+/* pick a random wallpaper, set it, and remember it for the next login */
+static const char *randwallcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/setwall\" random", NULL };
 
 /* volume control (5% step) */
 static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };

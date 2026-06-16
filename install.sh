@@ -116,6 +116,14 @@ install_wallpaper() {
     sync_tree "${DOTFILES_DIR}/wallpapers" "${HOME}/Wallpapers"
 }
 
+install_bin() {
+    echo ":: Syncing ~/.local/bin scripts..."
+    sync_tree "${DOTFILES_DIR}/home/.local/bin" "${HOME}/.local/bin"
+    # helper scripts are spawned directly (login, keybindings), so they must
+    # be executable.
+    find "${HOME}/.local/bin" -maxdepth 1 -type f -exec chmod +x {} +
+}
+
 install_deps() {
     echo ":: Installing dependencies..."
     sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2 qt6-base \
@@ -269,6 +277,7 @@ setup_ly() {
 
 sync_dotfiles() {
     install_wallpaper
+    install_bin
     install_xinitrc
     install_gtkrc2
     install_configs

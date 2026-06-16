@@ -163,6 +163,9 @@ install_vxwm() {
 install_xinitrc() {
     echo ":: Syncing ~/.xinitrc..."
     sync_file "${DOTFILES_DIR}/.xinitrc" "${HOME}/.xinitrc"
+    # ly execs ~/.xinitrc as a command, so it must be executable (startx
+    # tolerates a non-executable file, ly does not).
+    [ -f "${HOME}/.xinitrc" ] && chmod +x "${HOME}/.xinitrc"
 }
 
 install_gtkrc2() {

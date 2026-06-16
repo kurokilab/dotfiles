@@ -1,7 +1,10 @@
-# Ensure shell scripts and config files always use LF line endings,
-# even when edited on Windows. Prevents "bad interpreter: ...^M" errors.
-*.sh        text eol=lf
-.xinitrc    text eol=lf
-install.sh  text eol=lf
-*.bash      text eol=lf
-*.zsh       text eol=lf
+# Force LF line endings for every text file, even when edited on Windows.
+# These dotfiles target Linux; CRLF breaks shells (zsh: "command not found: ^M")
+# and "#!" interpreters ("bad interpreter: ...^M"). Git auto-detects binary
+# files and leaves them untouched.
+* text=auto eol=lf
+
+# Explicitly mark known binary assets so they are never touched.
+*.jpg binary
+*.jpeg binary
+*.png binary

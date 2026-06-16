@@ -94,7 +94,7 @@ case "$mime" in
         open_gui "$f" feh imv sxiv nsxiv ;;
 
     audio/* | video/*)
-        open_gui "$f" vlc mpv ;;
+        open_gui "$f" mpv vlc ;;
 
     application/pdf)
         open_gui "$f" zathura mupdf chromium ;;

@@ -162,7 +162,7 @@ install_vxwm() {
 
 install_xinitrc() {
     echo ":: Syncing ~/.xinitrc..."
-    sync_file "${DOTFILES_DIR}/.xinitrc" "${HOME}/.xinitrc"
+    sync_file "${DOTFILES_DIR}/home/.xinitrc" "${HOME}/.xinitrc"
     # ly execs ~/.xinitrc as a command, so it must be executable (startx
     # tolerates a non-executable file, ly does not).
     [ -f "${HOME}/.xinitrc" ] && chmod +x "${HOME}/.xinitrc"
@@ -170,7 +170,7 @@ install_xinitrc() {
 
 install_gtkrc2() {
     echo ":: Syncing ~/.gtkrc-2.0 (dark theme for GTK2 apps)..."
-    sync_file "${DOTFILES_DIR}/gtkrc-2.0" "${HOME}/.gtkrc-2.0"
+    sync_file "${DOTFILES_DIR}/home/gtkrc-2.0" "${HOME}/.gtkrc-2.0"
 }
 
 install_configs() {
@@ -207,7 +207,7 @@ install_ohmyzsh() {
 
 install_zshrc() {
     echo ":: Syncing ~/.zshrc..."
-    sync_file "${DOTFILES_DIR}/.zshrc" "${HOME}/.zshrc"
+    sync_file "${DOTFILES_DIR}/home/.zshrc" "${HOME}/.zshrc"
 }
 
 set_default_shell() {

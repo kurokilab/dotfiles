@@ -35,10 +35,11 @@ fastfetch, keepassxc, obsidian, chromium.
 ```
 .
 ├── install.sh        installer / updater
-├── .xinitrc          X session startup
-├── .zshrc            shell configuration
-├── gtkrc-2.0         GTK2 dark theme
 ├── wallpapers.jpg    default wallpaper
+├── home/             files installed into ~
+│   ├── .xinitrc      X session startup        → ~/.xinitrc
+│   ├── .zshrc        shell configuration      → ~/.zshrc
+│   └── gtkrc-2.0     GTK2 dark theme          → ~/.gtkrc-2.0
 ├── vxwm/
 │   └── config.h      vxwm build-time configuration
 └── config/           mirrored into ~/.config

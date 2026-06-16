@@ -5,7 +5,7 @@ export XCURSOR_SIZE=16
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null
 
-setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
+setxkbmap -layout us,ru -option 'grp:caps_toggle'
 
 xsetroot -cursor_name left_ptr &
 feh --bg-scale ~/Wallpapers/default.jpg &

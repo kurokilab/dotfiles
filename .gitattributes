@@ -1,0 +1,7 @@
+# Ensure shell scripts and config files always use LF line endings,
+# even when edited on Windows. Prevents "bad interpreter: ...^M" errors.
+*.sh        text eol=lf
+.xinitrc    text eol=lf
+install.sh  text eol=lf
+*.bash      text eol=lf
+*.zsh       text eol=lf

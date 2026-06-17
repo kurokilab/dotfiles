@@ -67,7 +67,7 @@ bootstrap_if_detached() {
 
     if ! command -v git >/dev/null 2>&1; then
         echo ":: git not found, installing it via pacman..."
-        sudo pacman -Sy --needed --noconfirm git
+        sudo pacman -Syu --needed --noconfirm git
     fi
 
     if [ -d "${CLONE_DIR}/.git" ]; then
@@ -149,10 +149,17 @@ install_wallpaper() {
 
 install_bin() {
     echo ":: Syncing ~/.local/bin scripts..."
-    sync_tree "${DOTFILES_DIR}/home/.local/bin" "${HOME}/.local/bin"
+    local src_dir="${DOTFILES_DIR}/home/.local/bin"
+    sync_tree "${src_dir}" "${HOME}/.local/bin"
     # helper scripts are spawned directly (login, keybindings), so they must
-    # be executable.
-    find "${HOME}/.local/bin" -maxdepth 1 -type f -exec chmod +x {} +
+    # be executable. Only chmod the scripts we just synced, never unrelated
+    # files the user already keeps in ~/.local/bin.
+    local src rel dst
+    while IFS= read -r -d '' src; do
+        rel="${src#"${src_dir}"/}"
+        dst="${HOME}/.local/bin/${rel}"
+        [ -f "${dst}" ] && chmod +x "${dst}"
+    done < <(find "${src_dir}" -type f -print0)
 }
 
 install_deps() {
@@ -165,7 +172,7 @@ install_deps() {
         tree nnn neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify      \
         zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp pavucontrol   \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity     \
-        udisks2 udiskie                                                                 \
+        udisks2 udiskie firefox                                                         \
         dconf gsettings-desktop-schemas xdg-desktop-portal xdg-desktop-portal-gtk       \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd      \
         cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting
@@ -324,8 +331,10 @@ sync_dotfiles() {
 }
 
 main() {
-    bootstrap_if_detached "$@"
+    # Parse args first so --help and unknown-option errors are handled before
+    # any network/clone work in bootstrap_if_detached.
     parse_args "$@"
+    bootstrap_if_detached "$@"
 
     if [ "${DOTFILES_ONLY}" -eq 1 ]; then
         echo ":: Dotfiles-only update..."

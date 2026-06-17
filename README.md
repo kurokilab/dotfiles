@@ -36,8 +36,8 @@ A full run will:
    applications above).
 2. Clone, configure (`vxwm/config.h`), build, and install vxwm and the `rvx`
    helper into `/usr/local/bin`.
-3. Sync the wallpapers, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries, and
-   `.zshrc` into the home directory.
+3. Sync the wallpapers, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries,
+   `.zshrc`, and `.gitconfig` into the home directory.
 4. Install oh-my-zsh (unattended) and set zsh as the default shell.
 5. Install `ly/config.ini` to `/etc/ly/config.ini` and enable
    `ly@tty2.service`.
@@ -76,6 +76,7 @@ Additional configured applications: cmus, cava, fastfetch.
 │   │   └── screenshot   region screenshot
 │   ├── .xinitrc         X session startup        → ~/.xinitrc
 │   ├── .zshrc           shell configuration      → ~/.zshrc
+│   ├── .gitconfig       global git configuration → ~/.gitconfig
 │   └── gtkrc-2.0        GTK2 dark theme          → ~/.gtkrc-2.0
 ├── vxwm/
 │   └── config.h         vxwm build-time configuration
@@ -83,6 +84,7 @@ Additional configured applications: cmus, cava, fastfetch.
 │   └── config.ini       ly display manager config → /etc/ly/config.ini
 └── config/              mirrored into ~/.config
     ├── alacritty/
+    ├── git/             global git ignore        → ~/.config/git/ignore
     ├── nvim/
     ├── picom/
     ├── dunst/

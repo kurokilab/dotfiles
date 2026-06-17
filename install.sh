@@ -28,6 +28,9 @@ VXWM_REPO="https://codeberg.org/wh1tepearl/vxwm.git"
 VXWM_DIR="/opt/vxwm"
 VXWM_CONFIG="${DOTFILES_DIR}/vxwm/config.h"
 
+DOTFILES_REPO="https://github.com/kurokilab/dotfiles.git"
+CLONE_DIR="${DOTFILES:-${HOME}/.dotfiles}"
+
 PREFIX="/usr/local"
 
 # runtime flags
@@ -48,6 +51,34 @@ parse_args() {
         esac
         shift
     done
+}
+
+# bootstrap_if_detached <args...>
+# When this script is run straight from curl (e.g.
+#   bash <(curl -Ls .../install.sh)
+# ) it executes with no repo alongside it, so the config trees it syncs don't
+# exist. Detect that, fetch the repo, and re-exec the real install.sh from the
+# clone so every ${DOTFILES_DIR}/... path resolves. A normal checkout (where
+# config/ sits next to the script) skips this entirely.
+bootstrap_if_detached() {
+    [ -d "${DOTFILES_DIR}/config" ] && return  # already a real checkout
+
+    echo ":: No repo alongside this script — bootstrapping from ${DOTFILES_REPO}"
+
+    if ! command -v git >/dev/null 2>&1; then
+        echo ":: git not found, installing it via pacman..."
+        sudo pacman -Sy --needed --noconfirm git
+    fi
+
+    if [ -d "${CLONE_DIR}/.git" ]; then
+        echo "   updating existing clone at ${CLONE_DIR}"
+        git -C "${CLONE_DIR}" pull --ff-only
+    else
+        echo "   cloning into ${CLONE_DIR}"
+        git clone "${DOTFILES_REPO}" "${CLONE_DIR}"
+    fi
+
+    exec bash "${CLONE_DIR}/install.sh" "$@"
 }
 
 # ---------------------------------------------------------------------------
@@ -285,6 +316,7 @@ sync_dotfiles() {
 }
 
 main() {
+    bootstrap_if_detached "$@"
     parse_args "$@"
 
     if [ "${DOTFILES_ONLY}" -eq 1 ]; then

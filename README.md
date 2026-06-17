@@ -10,6 +10,41 @@ The installer pulls in every package the configs expect, builds and installs
 desktop environment to remove or work around; the scripts assume nothing is set
 up yet.
 
+## Installation
+
+Quick install — bootstrap straight from curl. The script clones the repo into
+`~/.dotfiles` (override with `$DOTFILES`) and re-runs itself from there:
+
+```sh
+bash <(curl -Ls https://raw.githubusercontent.com/kurokilab/dotfiles/main/install.sh)
+```
+
+Or clone manually and run it in place:
+
+```sh
+git clone https://github.com/kurokilab/dotfiles.git
+cd dotfiles
+./install.sh
+```
+
+Either way, do **not** run it as root — it installs configs into your home
+directory and uses `sudo` only where needed.
+
+A full run will:
+
+1. Install all dependencies via `pacman` (`base-devel`, Xorg, fonts, and the
+   applications above).
+2. Clone, configure (`vxwm/config.h`), build, and install vxwm and the `rvx`
+   helper into `/usr/local/bin`.
+3. Sync the wallpapers, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries, and
+   `.zshrc` into the home directory.
+4. Install oh-my-zsh (unattended) and set zsh as the default shell.
+5. Install `ly/config.ini` to `/etc/ly/config.ini` and enable
+   `ly@tty2.service`.
+
+After installation, ly starts at the next boot. To start the session manually
+without ly, run `startx`.
+
 ## What's included
 
 | Component        | Tool                                          |
@@ -62,29 +97,6 @@ Additional configured applications: cmus, cava, fastfetch.
 - A working Arch Linux base install
 - A non-root user with `sudo` privileges (the installer refuses to run as root)
 - An internet connection (pacman, oh-my-zsh, and the vxwm clone)
-
-## Installation
-
-```sh
-git clone https://github.com/kurokilab/dotfiles.git
-cd dotfiles
-./install.sh
-```
-
-A full run will:
-
-1. Install all dependencies via `pacman` (`base-devel`, Xorg, fonts, and the
-   applications above).
-2. Clone, configure (`vxwm/config.h`), build, and install vxwm and the `rvx`
-   helper into `/usr/local/bin`.
-3. Sync the wallpapers, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries, and
-   `.zshrc` into the home directory.
-4. Install oh-my-zsh (unattended) and set zsh as the default shell.
-5. Install `ly/config.ini` to `/etc/ly/config.ini` and enable
-   `ly@tty2.service`.
-
-After installation, ly starts at the next boot. To start the session manually
-without ly, run `startx`.
 
 ## Options
 

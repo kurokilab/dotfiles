@@ -126,17 +126,15 @@ install_bin() {
 
 install_deps() {
     echo ":: Installing dependencies..."
-    sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2 qt6-base \
-        xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xprop xorg-xset xorg-xev xdotool xclip \
-        maim slop \
-        ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono  \
-        ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom pavucontrol zenity \
-        tree nnn neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify \
-        zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp \
-        thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer \
-        gvfs gvfs-mtp xarchiver \
-        polkit polkit-gnome \
-        dconf gsettings-desktop-schemas xdg-desktop-portal xdg-desktop-portal-gtk \
+    sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2   \
+        xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xprop xorg-xset xorg-xev  \
+        xdotool xclip maim slop gvfs gvfs-mtp xarchiver polkit polkit-gnome qt6-base    \
+        ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono      \
+        ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom     \
+        tree nnn neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify      \
+        zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp pavucontrol   \
+        thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity     \
+        dconf gsettings-desktop-schemas xdg-desktop-portal xdg-desktop-portal-gtk       \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd
 }
 

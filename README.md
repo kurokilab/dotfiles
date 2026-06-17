@@ -33,20 +33,20 @@ Additional configured applications: cmus, cava, fastfetch.
 
 ```
 .
-├── install.sh        installer / updater
-├── wallpapers/       wallpapers synced into ~/Wallpapers (default: default-3.png)
-├── home/             files installed into ~
-│   ├── .local/bin/   helper scripts           → ~/.local/bin
-│   │   ├── setwall   wallpaper restore/randomizer
-│   │   └── screenshot region screenshot → clipboard
-│   ├── .xinitrc      X session startup        → ~/.xinitrc
-│   ├── .zshrc        shell configuration      → ~/.zshrc
-│   └── gtkrc-2.0     GTK2 dark theme          → ~/.gtkrc-2.0
+├── install.sh           installer / updater
+├── wallpapers/          wallpapers synced into ~/Wallpapers (default: default-3.png)
+├── home/                files installed into ~
+│   ├── .local/bin/      helper scripts           → ~/.local/bin
+│   │   ├── setwall      wallpaper restore/randomizer
+│   │   └── screenshot   region screenshot
+│   ├── .xinitrc         X session startup        → ~/.xinitrc
+│   ├── .zshrc           shell configuration      → ~/.zshrc
+│   └── gtkrc-2.0        GTK2 dark theme          → ~/.gtkrc-2.0
 ├── vxwm/
-│   └── config.h      vxwm build-time configuration
+│   └── config.h         vxwm build-time configuration
 ├── ly/
-│   └── config.ini    ly display manager config → /etc/ly/config.ini
-└── config/           mirrored into ~/.config
+│   └── config.ini       ly display manager config → /etc/ly/config.ini
+└── config/              mirrored into ~/.config
     ├── alacritty/
     ├── nvim/
     ├── picom/
@@ -124,7 +124,7 @@ and vxwm are already in place.
   theme.
 - `.zshrc` provides two yt-dlp wrappers: `getaudio <url>` extracts audio as
   mp3 into `~/Music/Downloads`, and `getvideo <url>` downloads best
-  video+audio into `~/Videos/Downloads` (needs `yt-dlp` and `ffmpeg`).
+  video+audio into `~/Videos/Downloads`.
 - vxwm is configured at compile time; edit `vxwm/config.h` and re-run the
   installer (or `--skip-deps`) to rebuild.
 

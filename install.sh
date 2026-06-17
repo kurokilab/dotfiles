@@ -167,7 +167,7 @@ install_deps() {
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity     \
         dconf gsettings-desktop-schemas xdg-desktop-portal xdg-desktop-portal-gtk       \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd      \
-        cmake kleopatra
+        cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting
 }
 
 install_vxwm() {

@@ -137,6 +137,12 @@ and vxwm are already in place.
 - `.zshrc` provides two yt-dlp wrappers: `getaudio <url>` extracts audio as
   mp3 into `~/Music/Downloads`, and `getvideo <url>` downloads best
   video+audio into `~/Videos/Downloads`.
+- The shell is augmented with zsh-autosuggestions (history-based inline
+  suggestions), zsh-syntax-highlighting, fzf (`Ctrl+R` history, `Ctrl+T`
+  files, `Alt+C` cd), and zoxide (`z <dir>` jumps to frequently used
+  directories, `zi` for interactive picking). All four are installed from the
+  official repos and sourced from `/usr/share/zsh/plugins` and the `fzf`/
+  `zoxide` binaries, so there are no extra clones to maintain.
 - vxwm is configured at compile time; edit `vxwm/config.h` and re-run the
   installer (or `--skip-deps`) to rebuild.
 

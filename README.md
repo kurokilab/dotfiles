@@ -134,6 +134,10 @@ and vxwm are already in place.
   Cancel the selection with `Esc` or right-click.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
+- Removable drives are auto-mounted by `udiskie` (started from `.xinitrc`),
+  which sits on top of `udisks2` and notifies on insert/remove via dunst.
+  Mounted media show up under `/run/media/$USER` and in Thunar; right-click a
+  device there to unmount.
 - `.zshrc` provides two yt-dlp wrappers: `getaudio <url>` extracts audio as
   mp3 into `~/Music/Downloads`, and `getvideo <url>` downloads best
   video+audio into `~/Videos/Downloads`.

@@ -165,6 +165,7 @@ install_deps() {
         tree nnn neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify      \
         zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp pavucontrol   \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity     \
+        udisks2 udiskie                                                                 \
         dconf gsettings-desktop-schemas xdg-desktop-portal xdg-desktop-portal-gtk       \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd      \
         cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting

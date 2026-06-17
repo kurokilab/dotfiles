@@ -122,6 +122,9 @@ and vxwm are already in place.
   Cancel the selection with `Esc` or right-click.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
+- `.zshrc` provides two yt-dlp wrappers: `getaudio <url>` extracts audio as
+  mp3 into `~/Music/Downloads`, and `getvideo <url>` downloads best
+  video+audio into `~/Videos/Downloads` (needs `yt-dlp` and `ffmpeg`).
 - vxwm is configured at compile time; edit `vxwm/config.h` and re-run the
   installer (or `--skip-deps`) to rebuild.
 

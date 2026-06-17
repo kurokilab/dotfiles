@@ -10,6 +10,19 @@ source "$ZSH/oh-my-zsh.sh"
 export EDITOR=nvim
 export VISUAL=nvim
 
+# --- yt-dlp downloaders ---
+# getaudio <url> — extract best audio (mp3) into ~/Music/Downloads
+getaudio() {
+    yt-dlp -x --audio-format mp3 --audio-quality 0 \
+        -o "$HOME/Music/Downloads/%(title)s.%(ext)s" "$@"
+}
+
+# getvideo <url> — download best video+audio into ~/Videos/Downloads
+getvideo() {
+    yt-dlp -f "bv*+ba/b" \
+        -o "$HOME/Videos/Downloads/%(title)s.%(ext)s" "$@"
+}
+
 # --- nnn ---
 export NNN_OPENER="$HOME/.config/nnn/opener"
 

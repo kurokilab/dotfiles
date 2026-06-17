@@ -132,7 +132,7 @@ install_deps() {
         ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono  \
         ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom pavucontrol zenity \
         tree nnn neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify \
-        zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch \
+        zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer \
         gvfs gvfs-mtp xarchiver \
         polkit polkit-gnome \

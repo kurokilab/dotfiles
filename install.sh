@@ -166,7 +166,8 @@ install_deps() {
         zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp pavucontrol   \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity     \
         dconf gsettings-desktop-schemas xdg-desktop-portal xdg-desktop-portal-gtk       \
-        gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd
+        gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd      \
+        cmake kleopatra
 }
 
 install_vxwm() {
@@ -247,6 +248,11 @@ install_zshrc() {
     sync_file "${DOTFILES_DIR}/home/.zshrc" "${HOME}/.zshrc"
 }
 
+install_gitconfig() {
+    echo ":: Syncing ~/.gitconfig..."
+    sync_file "${DOTFILES_DIR}/home/.gitconfig" "${HOME}/.gitconfig"
+}
+
 set_default_shell() {
     echo ":: Setting zsh as the default shell..."
 
@@ -312,6 +318,7 @@ sync_dotfiles() {
     install_gtkrc2
     install_configs
     install_zshrc
+    install_gitconfig
     setup_nnn
 }
 

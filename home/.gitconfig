@@ -1,0 +1,48 @@
+[core]
+	editor = nvim
+	pager = less -FRX
+	autocrlf = input
+	excludesfile = ~/.config/git/ignore
+
+[init]
+	defaultBranch = main
+
+[gpg]
+	program = /usr/bin/gpg
+
+[gpg "ssh"]
+	program = /usr/bin/ssh-keygen
+
+[pull]
+	rebase = true
+
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[rebase]
+	autoStash = true
+	autoSquash = true
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	mnemonicPrefix = true
+	renames = copies
+
+[tag]
+	sort = version:refname
+
+[column]
+	ui = auto
+
+[help]
+	autocorrect = prompt
+
+[color]
+	ui = auto

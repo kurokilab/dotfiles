@@ -1,0 +1,18 @@
+# Editor / tooling
+*.swp
+*.swo
+*~
+.netrwhist
+.direnv/
+.idea/
+.vscode/
+.claude/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Build / dependency dirs
+node_modules/
+__pycache__/
+*.pyc

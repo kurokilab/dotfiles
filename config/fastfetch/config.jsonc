@@ -48,6 +48,12 @@
       "keyColor": "green"
     },
     {
+      "type": "disk",
+      "key": "age",
+      "folders": "/",
+      "format": "{days} days"
+    },
+    {
       "type": "cpu",
       "key": "cpu",
       "keyColor": "red",

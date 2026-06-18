@@ -10,7 +10,7 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null
 xset r rate 250 50
 xsetroot -cursor_name left_ptr &
 "$HOME/.local/bin/setwall" &
-picom --backend glx &
+picom &
 dunst &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 udiskie &

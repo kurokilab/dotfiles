@@ -57,7 +57,7 @@ without ly, run `startx`.
 | Session startup  | `.xinitrc` (X11 / `startx`)                    |
 | Terminal         | Alacritty                                      |
 | Shell            | zsh + oh-my-zsh                                |
-| Compositor       | picom (glx backend)                            |
+| Compositor       | picom (egl backend)                            |
 | Notifications    | dunst                                          |
 | Launcher         | dmenu                                          |
 | Editor           | Neovim (lazy.nvim)                             |
@@ -158,7 +158,7 @@ and vxwm are already in place.
   progress bar reflecting the current level; repeated presses replace the popup
   rather than stacking.
 - Application launch keys: `Super+Return` opens Alacritty, `Super+D` the dmenu
-  launcher, `Super+W` Chromium, and `Super+O` Obsidian.
+  launcher, `Super+W` Chromium, `Super+E` Thunar, and `Super+O` Obsidian.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
 - Default applications are set in `~/.config/mimeapps.list`, read by

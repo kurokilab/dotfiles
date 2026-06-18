@@ -59,6 +59,7 @@ without ly, run `startx`.
 | Launcher         | dmenu                                          |
 | Editor           | Neovim (lazy.nvim)                             |
 | File managers    | nnn (CLI), Thunar (GUI)                        |
+| Browser          | Chromium (default), Firefox                    |
 | Wallpaper        | feh                                            |
 | Theming          | Adwaita-dark (GTK 2/3/4, Qt via `gtk3` portal) |
 
@@ -125,9 +126,9 @@ and vxwm are already in place.
 
 - Keyboard layout is set to `us,ru` toggled with `Caps Lock` (see `.xinitrc`).
 - Wallpapers live in `~/Wallpapers` and are driven by `~/.local/bin/setwall`.
-  At login `.xinitrc` restores the last selected wallpaper; `Super+W` picks a
-  new random one (`.jpg`, `.jpeg`, `.png`) and `Super+Shift+W` opens a file
-  dialog (zenity) to choose any image on disk. Either way the choice is
+  At login `.xinitrc` restores the last selected wallpaper; `Super+Ctrl+W`
+  picks a new random one (`.jpg`, `.jpeg`, `.png`) and `Super+Shift+W` opens a
+  file dialog (zenity) to choose any image on disk. Either way the choice is
   remembered for next time in `~/.cache/wallpaper`; on a fresh install it
   defaults to `default-3.png`. Drop images into the repo's `wallpapers/`
   directory and re-run the installer to add more.
@@ -140,6 +141,8 @@ and vxwm are already in place.
   `Super+M` toggles mute. Each change shows a minimal dunst popup with a
   progress bar reflecting the current level; repeated presses replace the popup
   rather than stacking.
+- Application launch keys: `Super+Return` opens Alacritty, `Super+D` the dmenu
+  launcher, `Super+W` Chromium, and `Super+O` Obsidian.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
 - Removable drives are auto-mounted by `udiskie` (started from `.xinitrc`),

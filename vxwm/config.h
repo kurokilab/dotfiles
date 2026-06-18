@@ -127,6 +127,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-b", "-fn", dmenufont, "-nb", no
 
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *obsidiancmd[] = { "obsidian", NULL };
+static const char *chromiumcmd[] = { "chromium", NULL };
 
 /* pick a random wallpaper, set it, and remember it for the next login */
 static const char *randwallcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/setwall\" random", NULL };
@@ -154,8 +155,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
     { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = obsidiancmd } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = randwallcmd } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = chromiumcmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = selwallcmd } },
+	{ MODKEY|ControlMask,           XK_w,      spawn,          {.v = randwallcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = shotcmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = shotsavecmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },

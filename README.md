@@ -42,6 +42,8 @@ A full run will:
 4. Install oh-my-zsh (unattended) and set zsh as the default shell.
 5. Install `ly/config.ini` to `/etc/ly/config.ini` and enable
    `ly@tty2.service`.
+6. Install `x11/30-libinput.conf` to
+   `/etc/X11/xorg.conf.d/30-libinput.conf` (mouse/touchpad settings).
 
 After installation, ly starts at the next boot. To start the session manually
 without ly, run `startx`.
@@ -87,6 +89,8 @@ Additional configured applications: cmus, cava, fastfetch.
 │   └── config.h         vxwm build-time configuration
 ├── ly/
 │   └── config.ini       ly display manager config → /etc/ly/config.ini
+├── x11/
+│   └── 30-libinput.conf mouse/touchpad settings   → /etc/X11/xorg.conf.d/
 └── config/              mirrored into ~/.config
     ├── mimeapps.list    default app associations  → ~/.config/mimeapps.list
     ├── alacritty/
@@ -128,7 +132,15 @@ and vxwm are already in place.
 
 ## Notes
 
-- Keyboard layout is set to `us,ru` toggled with `Caps Lock` (see `.xinitrc`).
+- Input settings live in `x11/30-libinput.conf`, installed to
+  `/etc/X11/xorg.conf.d/30-libinput.conf`: keyboard layout (`us,ru` toggled with
+  `Caps Lock`), mouse and touchpad sensitivity, acceleration profile,
+  tap-to-click, and scrolling. Because these are declarative they apply before
+  login, so the ly greeter honours the layout too. Edit the options there (each
+  is documented inline) and re-run the installer (or `--skip-deps`) to apply;
+  probe live values with `xinput list-props <id>`. The one input setting that
+  has no reliable libinput equivalent — keyboard auto-repeat — stays in
+  `.xinitrc` as `xset r rate 250 50` (250 ms delay, 50 Hz).
 - Wallpapers live in `~/Wallpapers` and are driven by `~/.local/bin/setwall`.
   At login `.xinitrc` restores the last selected wallpaper; `Super+Ctrl+W`
   picks a new random one (`.jpg`, `.jpeg`, `.png`) and `Super+Shift+W` opens a

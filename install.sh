@@ -178,6 +178,7 @@ install_deps() {
     echo ":: Installing dependencies..."
     sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2    \
         xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xprop xorg-xset xorg-xev   \
+        xorg-xinput xf86-input-libinput                                                  \
         xdotool xclip maim slop gvfs gvfs-mtp xarchiver polkit polkit-gnome qt6-base     \
         ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono       \
         ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom      \
@@ -330,6 +331,30 @@ setup_ly() {
     sudo systemctl enable --now ly@tty2.service
 }
 
+setup_x11_input() {
+    echo ":: Configuring X11 input (libinput mouse/touchpad)..."
+
+    local src="${DOTFILES_DIR}/x11/30-libinput.conf"
+    local dst="/etc/X11/xorg.conf.d/30-libinput.conf"
+
+    if [ ! -f "${src}" ]; then
+        echo "   ${src} not found, skipping"
+        return
+    fi
+
+    sudo mkdir -p /etc/X11/xorg.conf.d
+
+    if sudo cmp -s "${src}" "${dst}" 2>/dev/null; then
+        echo "   ${dst} already up to date"
+    else
+        if [ -f "${dst}" ] && [ ! -L "${dst}" ]; then
+            echo "   backing up existing ${dst} -> ${dst}.bak"
+            sudo cp -f "${dst}" "${dst}.bak"
+        fi
+        sudo install -Dm644 "${src}" "${dst}"
+    fi
+}
+
 # ---------------------------------------------------------------------------
 
 sync_dotfiles() {
@@ -363,6 +388,7 @@ main() {
     install_ohmyzsh
     set_default_shell
     setup_ly
+    setup_x11_input
 
     echo ":: Done. ly will start at next boot."
 }

@@ -170,7 +170,8 @@ install_deps() {
         ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono      \
         ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom     \
         tree nnn neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify      \
-        zsh curl ufw mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp pavucontrol   \
+        zsh curl ufw networkmanager mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg yt-dlp \
+        pavucontrol                                                                      \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity     \
         udisks2 udiskie firefox                                                         \
         dconf gsettings-desktop-schemas xdg-desktop-portal xdg-desktop-portal-gtk       \

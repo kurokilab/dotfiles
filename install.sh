@@ -178,7 +178,7 @@ install_deps() {
     echo ":: Installing dependencies..."
     sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2    \
         xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xprop xorg-xset xorg-xev   \
-        xorg-xinput xf86-input-libinput                                                  \
+        xorg-xinput xf86-input-libinput screen atool sshfs                               \
         xdotool xclip maim slop gvfs gvfs-mtp xarchiver polkit polkit-gnome qt6-base     \
         ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono       \
         ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom      \
@@ -188,8 +188,7 @@ install_deps() {
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity      \
         dconf gsettings-desktop-schemas xdg-utils xdg-desktop-portal                     \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd       \
-        cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting           \
-        atool sshfs
+        cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting
 }
 
 install_vxwm() {

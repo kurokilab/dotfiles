@@ -66,5 +66,25 @@ application/x-7z-compressed=xarchiver.desktop
 application/vnd.rar=xarchiver.desktop
 application/x-rar=xarchiver.desktop
 
+# Plain text, scripts and code -> Neovim, opened inside Alacritty.
+# Uses our ~/.local/share/applications/nvim.desktop wrapper (Terminal=false,
+# Exec=alacritty -e nvim), NOT the stock nvim.desktop whose Terminal=true makes
+# Thunar fail with "Unable to find terminal required for application".
+text/plain=nvim.desktop
+text/english=nvim.desktop
+text/markdown=nvim.desktop
+text/x-shellscript=nvim.desktop
+application/x-shellscript=nvim.desktop
+text/x-makefile=nvim.desktop
+text/x-python=nvim.desktop
+application/json=nvim.desktop
+application/x-yaml=nvim.desktop
+text/x-csrc=nvim.desktop
+text/x-chdr=nvim.desktop
+text/x-c++src=nvim.desktop
+text/x-lua=nvim.desktop
+text/x-go=nvim.desktop
+application/x-desktop=nvim.desktop
+
 # Directories
 inode/directory=thunar.desktop

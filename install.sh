@@ -162,6 +162,18 @@ install_bin() {
     done < <(find "${src_dir}" -type f -print0)
 }
 
+install_applications() {
+    echo ":: Syncing ~/.local/share/applications (.desktop launchers)..."
+    sync_tree "${DOTFILES_DIR}/home/.local/share/applications" \
+        "${HOME}/.local/share/applications"
+    # Refresh the MIME cache so Thunar/xdg-open pick up our nvim.desktop wrapper
+    # (which overrides the stock Terminal=true entry). Harmless if the tool or
+    # the dir is missing.
+    if command -v update-desktop-database >/dev/null 2>&1; then
+        update-desktop-database "${HOME}/.local/share/applications" 2>/dev/null || true
+    fi
+}
+
 install_deps() {
     echo ":: Installing dependencies..."
     sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2    \
@@ -322,6 +334,7 @@ setup_ly() {
 sync_dotfiles() {
     install_wallpaper
     install_bin
+    install_applications
     install_xinitrc
     install_gtkrc2
     install_configs

@@ -37,7 +37,8 @@ A full run will:
 2. Clone, configure (`vxwm/config.h`), build, and install vxwm and the `rvx`
    helper into `/usr/local/bin`.
 3. Sync the wallpapers, `.xinitrc`, `.gtkrc-2.0`, `~/.config` entries,
-   `.zshrc`, and `.gitconfig` into the home directory.
+   `~/.local/share/applications` launchers, `.zshrc`, and `.gitconfig` into
+   the home directory.
 4. Install oh-my-zsh (unattended) and set zsh as the default shell.
 5. Install `ly/config.ini` to `/etc/ly/config.ini` and enable
    `ly@tty2.service`.
@@ -76,6 +77,8 @@ Additional configured applications: cmus, cava, fastfetch.
 │   │   ├── setwall      wallpaper restore/randomizer
 │   │   ├── screenshot   region screenshot
 │   │   └── volume       volume control + on-screen popup
+│   ├── .local/share/applications/  .desktop launchers → ~/.local/share/applications
+│   │   └── nvim.desktop Neovim-in-Alacritty wrapper (Terminal=false)
 │   ├── .xinitrc         X session startup        → ~/.xinitrc
 │   ├── .zshrc           shell configuration      → ~/.zshrc
 │   ├── .gitconfig       global git configuration → ~/.gitconfig
@@ -148,10 +151,16 @@ and vxwm are already in place.
   theme.
 - Default applications are set in `~/.config/mimeapps.list`, read by
   `xdg-open` and Thunar: Chromium for web pages and URLs, mupdf for PDF/EPUB,
-  feh for images, VLC for audio, mpv for video, xarchiver for archives, and
-  Thunar for directories. These mirror the routing in `~/.config/nnn/opener`,
-  so files open the same way from nnn, Thunar, or any app that calls
-  `xdg-open`.
+  feh for images, VLC for audio, mpv for video, xarchiver for archives, Neovim
+  for text/scripts/code, and Thunar for directories. These mirror the routing
+  in `~/.config/nnn/opener`, so files open the same way from nnn, Thunar, or
+  any app that calls `xdg-open`.
+- Text files and scripts open in Neovim via a custom
+  `~/.local/share/applications/nvim.desktop` wrapper that runs `alacritty -e
+  nvim` with `Terminal=false`. This overrides the stock `nvim.desktop` (whose
+  `Terminal=true` makes Thunar fail with "Unable to find terminal required for
+  application" on this non-XFCE setup, since there is no preferred-terminal
+  helper to resolve).
 - Removable drives are auto-mounted by `udiskie` (started from `.xinitrc`),
   which sits on top of `udisks2` and notifies on insert/remove via dunst.
   Mounted media show up under `/run/media/$USER` and in Thunar; right-click a

@@ -1,0 +1,16 @@
+[Desktop Entry]
+# Overrides the stock /usr/share/applications/nvim.desktop, whose Terminal=true
+# breaks GUI file managers on a non-XFCE setup: Thunar can't find a "preferred
+# terminal" helper and bails with "Unable to find terminal required for
+# application". Here we drop Terminal and spawn alacritty ourselves instead, so
+# double-clicking a text file / script in Thunar opens nvim reliably.
+Type=Application
+Name=Neovim
+GenericName=Text Editor
+Comment=Edit text files with Neovim (launched in Alacritty)
+Exec=alacritty -e nvim %F
+Terminal=false
+Icon=nvim
+Categories=Utility;TextEditor;
+StartupNotify=false
+MimeType=text/plain;text/english;text/x-shellscript;application/x-shellscript;text/x-makefile;text/markdown;text/x-python;application/json;application/x-yaml;text/x-csrc;text/x-chdr;text/x-c++src;text/x-lua;text/x-go;application/x-desktop;

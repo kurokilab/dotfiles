@@ -10,7 +10,11 @@
 
 STEP=5      # percentage points per press
 MAX=100     # ceiling; raising past this is clamped so the bar stays sane
-SINK="@DEFAULT_SINK@"
+
+# Resolve the real sink name. The @DEFAULT_SINK@ alias is only understood by
+# pactl's set-* commands, not get-sink-volume/get-sink-mute, so reading it back
+# would yield nothing and break the clamp on the way up.
+SINK=$(pactl get-default-sink)
 
 # First percentage in `pactl get-sink-volume` output (per-channel, identical
 # for our purposes).

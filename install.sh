@@ -178,7 +178,7 @@ install_deps() {
     echo ":: Installing dependencies..."
     sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2    \
         xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xprop xorg-xset xorg-xev   \
-        xorg-xinput xf86-input-libinput screen atool sshfs                               \
+        xorg-xinput xf86-input-libinput screen atool sshfs eza bat lazygit yazi kitty    \
         xdotool xclip maim slop gvfs gvfs-mtp xarchiver polkit polkit-gnome qt6-base     \
         ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono       \
         ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom      \

@@ -138,10 +138,10 @@ static const char *shotcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/scree
 /* select a region, copy it, and also save a PNG to ~/Pictures/Screenshots */
 static const char *shotsavecmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/screenshot\" save", NULL };
 
-/* volume control (5% step) */
-static const char *volupcmd[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+/* volume control (5% step) with an on-screen level popup */
+static const char *volupcmd[]   = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/volume\" up", NULL };
+static const char *voldowncmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/volume\" down", NULL };
+static const char *volmutecmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/volume\" mute", NULL };
 
 #if ZOOM
 static const char *zoomin[] = { "vcompmgr", "-Z", "+0.15", NULL }; // zoom in
@@ -168,9 +168,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, swapmaster,     {0} },
 	{ MODKEY,                       XK_0,      view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_Tab,    view,           {.ui = ~0 } },
@@ -191,7 +191,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,            quit,     {0} },
 	{ MODKEY,                       XK_bracketright, spawn,    {.v = volupcmd } },
 	{ MODKEY,                       XK_bracketleft,  spawn,    {.v = voldowncmd } },
-	{ MODKEY|ShiftMask,             XK_m,            spawn,    {.v = volmutecmd } },
+	{ MODKEY,                       XK_m,            spawn,    {.v = volmutecmd } },
 #if XRDB
   { MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 #endif

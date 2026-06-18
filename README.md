@@ -73,7 +73,8 @@ Additional configured applications: cmus, cava, fastfetch.
 ├── home/                files installed into ~
 │   ├── .local/bin/      helper scripts           → ~/.local/bin
 │   │   ├── setwall      wallpaper restore/randomizer
-│   │   └── screenshot   region screenshot
+│   │   ├── screenshot   region screenshot
+│   │   └── volume       volume control + on-screen popup
 │   ├── .xinitrc         X session startup        → ~/.xinitrc
 │   ├── .zshrc           shell configuration      → ~/.zshrc
 │   ├── .gitconfig       global git configuration → ~/.gitconfig
@@ -134,6 +135,11 @@ and vxwm are already in place.
   `Super+Shift+S` selects a region and copies it to the clipboard;
   `Super+Ctrl+S` also saves a timestamped PNG to `~/Pictures/Screenshots`.
   Cancel the selection with `Esc` or right-click.
+- Volume is driven by `~/.local/bin/volume` (pactl). `Super+]` raises and
+  `Super+[` lowers the default sink in 5% steps (clamped to 100%), and
+  `Super+M` toggles mute. Each change shows a minimal dunst popup with a
+  progress bar reflecting the current level; repeated presses replace the popup
+  rather than stacking.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
 - Removable drives are auto-mounted by `udiskie` (started from `.xinitrc`),

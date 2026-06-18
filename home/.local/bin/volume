@@ -16,10 +16,10 @@ MAX=100     # ceiling; raising past this is clamped so the bar stays sane
 # would yield nothing and break the clamp on the way up.
 SINK=$(pactl get-default-sink)
 
-# First percentage in `pactl get-sink-volume` output (per-channel, identical
-# for our purposes).
+# First percentage in `pactl get-sink-volume` output. A stereo sink prints both
+# channels on one line, so `-o` would emit two numbers; head pins it to one.
 get_volume() {
-	pactl get-sink-volume "$SINK" | grep -m1 -oP '\d+(?=%)'
+	pactl get-sink-volume "$SINK" | grep -oP '\d+(?=%)' | head -n1
 }
 
 notify() {
@@ -32,11 +32,15 @@ notify() {
 
 case "$1" in
 up)
-	# Clamp first so we never drift above MAX with repeated presses.
+	# Raise relatively (same mechanism as "down", which is known to work),
+	# then pin back down if we overshot MAX. The clamp is best-effort: if the
+	# level can't be read it is simply skipped rather than blocking the raise.
+	pactl set-sink-volume "$SINK" "+${STEP}%"
 	cur=$(get_volume)
-	new=$((cur + STEP))
-	[ "$new" -gt "$MAX" ] && new=$MAX
-	pactl set-sink-volume "$SINK" "${new}%"
+	case "$cur" in
+	''|*[!0-9]*) ;;
+	*) [ "$cur" -gt "$MAX" ] && pactl set-sink-volume "$SINK" "${MAX}%" ;;
+	esac
 	pactl set-sink-mute "$SINK" 0
 	;;
 down)
@@ -53,7 +57,9 @@ mute)
 esac
 
 if pactl get-sink-mute "$SINK" | grep -q yes; then
-	notify 0 "Звук выключен"
+	notify 0 "Muted"
 else
-	notify "$(get_volume)" "Громкость"
+	vol=$(get_volume)
+	case "$vol" in ''|*[!0-9]*) vol=0 ;; esac
+	notify "$vol" "Volume ${vol}%"
 fi

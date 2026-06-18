@@ -85,6 +85,7 @@ Additional configured applications: cmus, cava, fastfetch.
 ├── ly/
 │   └── config.ini       ly display manager config → /etc/ly/config.ini
 └── config/              mirrored into ~/.config
+    ├── mimeapps.list    default app associations  → ~/.config/mimeapps.list
     ├── alacritty/
     ├── git/             global git ignore        → ~/.config/git/ignore
     ├── nvim/
@@ -145,6 +146,12 @@ and vxwm are already in place.
   launcher, `Super+W` Chromium, and `Super+O` Obsidian.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
+- Default applications are set in `~/.config/mimeapps.list`, read by
+  `xdg-open` and Thunar: Chromium for web pages and URLs, mupdf for PDF/EPUB,
+  feh for images, VLC for audio, mpv for video, xarchiver for archives, and
+  Thunar for directories. These mirror the routing in `~/.config/nnn/opener`,
+  so files open the same way from nnn, Thunar, or any app that calls
+  `xdg-open`.
 - Removable drives are auto-mounted by `udiskie` (started from `.xinitrc`),
   which sits on top of `udisks2` and notifies on insert/remove via dunst.
   Mounted media show up under `/run/media/$USER` and in Thunar; right-click a

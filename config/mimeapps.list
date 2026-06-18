@@ -1,0 +1,70 @@
+# Default application associations (XDG).
+#
+# Read by xdg-open and GUI file managers (Thunar) to decide which program
+# opens a given file type or URL scheme. Kept in sync with the routing in
+# ~/.config/nnn/opener: chromium for web/html, feh for images, vlc for audio,
+# mpv for video, mupdf for PDF/EPUB, xarchiver for archives, thunar for dirs.
+#
+# Lives at ~/.config/mimeapps.list (synced by install.sh).
+
+[Default Applications]
+# Web browser + URL schemes
+text/html=chromium.desktop
+application/xhtml+xml=chromium.desktop
+x-scheme-handler/http=chromium.desktop
+x-scheme-handler/https=chromium.desktop
+x-scheme-handler/about=chromium.desktop
+x-scheme-handler/unknown=chromium.desktop
+
+# Documents
+application/pdf=mupdf.desktop
+application/epub+zip=mupdf.desktop
+
+# Images (SVG goes to the browser since feh/imlib2 can't render it)
+image/png=feh.desktop
+image/jpeg=feh.desktop
+image/gif=feh.desktop
+image/bmp=feh.desktop
+image/webp=feh.desktop
+image/tiff=feh.desktop
+image/x-xpixmap=feh.desktop
+image/x-portable-pixmap=feh.desktop
+image/svg+xml=chromium.desktop
+
+# Audio
+audio/mpeg=vlc.desktop
+audio/flac=vlc.desktop
+audio/x-flac=vlc.desktop
+audio/ogg=vlc.desktop
+audio/x-vorbis+ogg=vlc.desktop
+audio/opus=vlc.desktop
+audio/wav=vlc.desktop
+audio/x-wav=vlc.desktop
+audio/aac=vlc.desktop
+audio/mp4=vlc.desktop
+audio/x-m4a=vlc.desktop
+
+# Video
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/webm=mpv.desktop
+video/x-msvideo=mpv.desktop
+video/quicktime=mpv.desktop
+video/mpeg=mpv.desktop
+video/x-flv=mpv.desktop
+video/3gpp=mpv.desktop
+
+# Archives
+application/zip=xarchiver.desktop
+application/x-tar=xarchiver.desktop
+application/x-compressed-tar=xarchiver.desktop
+application/gzip=xarchiver.desktop
+application/x-bzip2=xarchiver.desktop
+application/x-xz=xarchiver.desktop
+application/zstd=xarchiver.desktop
+application/x-7z-compressed=xarchiver.desktop
+application/vnd.rar=xarchiver.desktop
+application/x-rar=xarchiver.desktop
+
+# Directories
+inode/directory=thunar.desktop

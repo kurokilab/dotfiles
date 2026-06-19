@@ -140,6 +140,10 @@ static const char *shotcmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/scree
 /* select a region, copy it, and also save a PNG to ~/Pictures/Screenshots */
 static const char *shotsavecmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/screenshot\" save", NULL };
 
+/* toggle the quickshell bar's visibility over IPC, leaving the process (and
+ * thus the system tray's registrations) intact */
+static const char *quickshelltogglecmd[] = { "qs", "ipc", "call", "bar", "toggle", NULL };
+
 /* volume control (5% step) with an on-screen level popup */
 static const char *volupcmd[]   = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/volume\" up", NULL };
 static const char *voldowncmd[] = { "/bin/sh", "-c", "exec \"$HOME/.local/bin/volume\" down", NULL };
@@ -162,7 +166,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_w,      spawn,          {.v = randwallcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = shotcmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = shotsavecmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY,                       XK_b,      spawn,          {.v = quickshelltogglecmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },

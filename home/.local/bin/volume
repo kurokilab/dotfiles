@@ -1,12 +1,10 @@
 #!/bin/sh
-# Volume helper with a minimal on-screen notification.
+# Volume helper.
 #   volume up      raise the default sink by one step
 #   volume down    lower the default sink by one step
 #   volume mute    toggle mute on the default sink
 #
-# Adjusts the level with pactl, then shows a dunst notification carrying a
-# progress bar (int:value) and nothing else. Reusing one stack tag means
-# repeated key presses replace the popup instead of piling up.
+# Adjusts the level with pactl. No on-screen notification is shown.
 
 STEP=5      # percentage points per press
 MAX=100     # ceiling; raising past this is clamped so the bar stays sane
@@ -20,14 +18,6 @@ SINK=$(pactl get-default-sink)
 # channels on one line, so `-o` would emit two numbers; head pins it to one.
 get_volume() {
 	pactl get-sink-volume "$SINK" | grep -oP '\d+(?=%)' | head -n1
-}
-
-notify() {
-	# string:x-dunst-stack-tag:volume -> collapse onto a single popup.
-	dunstify -a volume -u low -t 1500 \
-		-h string:x-dunst-stack-tag:volume \
-		-h "int:value:$1" \
-		"$2"
 }
 
 case "$1" in
@@ -55,11 +45,3 @@ mute)
 	exit 1
 	;;
 esac
-
-if pactl get-sink-mute "$SINK" | grep -q yes; then
-	notify 0 "Muted"
-else
-	vol=$(get_volume)
-	case "$vol" in ''|*[!0-9]*) vol=0 ;; esac
-	notify "$vol" "Volume ${vol}%"
-fi

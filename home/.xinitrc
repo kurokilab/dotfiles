@@ -12,6 +12,7 @@ xsetroot -cursor_name left_ptr &
 "$HOME/.local/bin/setwall" &
 picom &
 dunst &
+quickshell &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 udiskie &
 

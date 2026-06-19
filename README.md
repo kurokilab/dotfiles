@@ -58,6 +58,7 @@ without ly, run `startx`.
 | Terminal         | Alacritty                                      |
 | Shell            | zsh + oh-my-zsh                                |
 | Compositor       | picom (egl backend)                            |
+| Status bar       | Quickshell (gruvbox, tags / clock / tray)      |
 | Notifications    | dunst                                          |
 | Launcher         | dmenu                                          |
 | Editor           | Neovim (lazy.nvim)                             |
@@ -98,6 +99,7 @@ Additional configured applications: cmus, cava, fastfetch.
     ├── nvim/
     ├── picom/
     ├── dunst/
+    ├── quickshell/      gruvbox status bar (QML)
     ├── yazi/
     ├── Thunar/
     ├── cmus/  cava/  fastfetch/
@@ -157,6 +159,26 @@ and vxwm are already in place.
   `Super+M` toggles mute. Each change shows a minimal dunst popup with a
   progress bar reflecting the current level; repeated presses replace the popup
   rather than stacking.
+- The status bar is [Quickshell](https://quickshell.outfoxxed.me/), started from
+  `.xinitrc` and configured in `~/.config/quickshell/` (gruvbox dark, matching
+  the rest of the rice) with a fully transparent background — picom composites it
+  over the wallpaper, and every glyph carries a soft blurred drop shadow so the
+  text stays readable on light wallpapers. Left: tags 1–9 — the focused one is
+  read live from vxwm's `_NET_CURRENT_DESKTOP` (EWMH) and clicking a tag replays
+  the `Super+N` view keybind via xdotool (the active tag gets a solid accent
+  plate, the rest are plain foreground). Centre: a minute-precision clock. Right,
+  left to right: a collapsible StatusNotifier system tray hidden behind a chevron
+  (click to reveal the icons), the active keyboard layout (`US`/`RU`, click
+  toggles it by sending `Caps_Lock`), then speaker volume (click toggles mute,
+  scroll adjusts ±5%, turns red when muted) and microphone state (red when muted,
+  click toggles). vxwm's internal bar is left off (`showbar = 0`); Quickshell
+  reserves the strut so windows tile below it. Quickshell and the
+  `xkblayout-state` helper (used by the layout indicator to read the active XKB
+  group) are **not** in the official repos, so the installer bootstraps the
+  `yay` AUR helper and pulls them in automatically; the Qt6 runtime they need
+  (`qt6-base`, `qt6-declarative`, `qt6-svg`) comes from the official repos. The
+  tag readout relies on vxwm's `EWMH_TAGS` module and the strut on
+  `EXTERNAL_BARS`, both enabled by default in vxwm's `modules.def.h`.
 - Application launch keys: `Super+Return` opens Alacritty, `Super+D` the dmenu
   launcher, `Super+W` Chromium, `Super+E` Thunar, and `Super+O` Obsidian.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark

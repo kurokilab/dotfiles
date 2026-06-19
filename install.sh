@@ -31,6 +31,12 @@ VXWM_CONFIG="${DOTFILES_DIR}/vxwm/config.h"
 DOTFILES_REPO="https://github.com/kurokilab/dotfiles.git"
 CLONE_DIR="${DOTFILES:-${HOME}/.dotfiles}"
 
+# AUR packages that aren't in the official repos. quickshell drives the status
+# bar; xkblayout-state lets it read the active XKB group for the layout
+# indicator. Installed via yay (see install_yay / install_aur_deps).
+YAY_REPO="https://aur.archlinux.org/yay-bin.git"
+AUR_PKGS=(quickshell xkblayout-state)
+
 PREFIX="/usr/local"
 
 # runtime flags
@@ -186,9 +192,45 @@ install_deps() {
         zsh curl ufw networkmanager mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg        \
         pavucontrol udisks2 udiskie firefox xdg-desktop-portal-gtk yt-dlp                \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity      \
+        qt6-declarative qt6-svg                                                           \
         dconf gsettings-desktop-schemas xdg-utils xdg-desktop-portal                     \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd       \
         cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting
+}
+
+install_yay() {
+    echo ":: Installing yay (AUR helper)..."
+
+    if command -v yay >/dev/null 2>&1; then
+        echo "   yay already installed, skipping"
+        return
+    fi
+
+    # makepkg needs base-devel + git. install_deps already pulls these in, but
+    # ensure they're present in case this runs after --skip-deps was lifted or
+    # on a minimal base. makepkg itself refuses to run as root, which suits this
+    # script (it bails on root up top); it uses sudo internally for pacman -U.
+    sudo pacman -Syu --needed --noconfirm base-devel git
+
+    local build_dir
+    build_dir="$(mktemp -d)"
+    # Always clean the temp clone up, even if makepkg fails under `set -e`.
+    trap 'rm -rf "${build_dir}"' RETURN
+
+    echo "   building yay-bin in ${build_dir}"
+    git clone "${YAY_REPO}" "${build_dir}/yay-bin"
+    ( cd "${build_dir}/yay-bin" && makepkg -si --needed --noconfirm )
+}
+
+install_aur_deps() {
+    echo ":: Installing AUR dependencies (${AUR_PKGS[*]})..."
+
+    if ! command -v yay >/dev/null 2>&1; then
+        echo "   yay not found, skipping AUR deps"
+        return
+    fi
+
+    yay -S --needed --noconfirm "${AUR_PKGS[@]}"
 }
 
 install_vxwm() {
@@ -368,7 +410,13 @@ main() {
         return
     fi
 
-    [ "${SKIP_DEPS}" -eq 1 ] && echo ":: Skipping dependency install (--skip-deps)" || install_deps
+    if [ "${SKIP_DEPS}" -eq 1 ]; then
+        echo ":: Skipping dependency install (--skip-deps)"
+    else
+        install_deps
+        install_yay
+        install_aur_deps
+    fi
     install_vxwm
     sync_dotfiles
     install_ohmyzsh

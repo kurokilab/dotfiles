@@ -25,7 +25,7 @@
 	<directories/>
 </action>
 <action>
-	<icon>edit-find</icon>
+	<icon>accessories-text-editor</icon>
 	<name>Edit in Neovim</name>
 	<submenu></submenu>
 	<unique-id>edit-in-nvim</unique-id>

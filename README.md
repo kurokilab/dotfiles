@@ -219,7 +219,8 @@ and vxwm are already in place.
   via a vendored previewer plugin in `~/.config/yazi/plugins/glow.yazi`; `.md`
   files still open in Neovim on `Enter` for editing.
 - `bat` uses its built-in `gruvbox-dark` theme (`~/.config/bat/config`, no
-  `bat cache --build` needed) and is aliased to `cat` in `.zshrc`.
+  `bat cache --build` needed); `--style="numbers,changes"` keeps the output
+  close to plain `cat` while adding syntax colours.
 - `man` is wired to tealdeer in `.zshrc`: it shows the concise, example-first
   `tldr` page and falls back to the full manual when there's no tldr entry
   (`command man` always reaches the real man(1)). Populate the cache once with

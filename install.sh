@@ -44,7 +44,20 @@ DOTFILES_ONLY=0
 SKIP_DEPS=0
 
 usage() {
-    sed -n '4,18p' "${BASH_SOURCE[0]}" | sed 's/^#  \{0,1\}//; s/^#//'
+    cat <<'EOF'
+dotfiles installer / updater
+
+Usage:
+  ./install.sh                 full install or update (dotfiles + system)
+  ./install.sh --dotfiles-only only sync dotfiles (fast, no sudo/pacman)
+  ./install.sh --skip-deps     skip the pacman dependency step
+  ./install.sh -h | --help     show this help
+
+Re-running is safe: existing files are updated in place only when their
+contents actually changed, brand-new files are added, and unrelated files
+in your home dir are left untouched. A one-time .bak is kept for any real
+file that gets overwritten with different content.
+EOF
 }
 
 parse_args() {
@@ -182,7 +195,7 @@ install_applications() {
 
 install_deps() {
     echo ":: Installing dependencies..."
-    sudo pacman -Suy --needed base-devel git libx11 libxft libxinerama make freetype2    \
+    sudo pacman -Syu --needed base-devel git libx11 libxft libxinerama make freetype2    \
         xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xprop xorg-xset xorg-xev   \
         xorg-xinput xf86-input-libinput screen atool sshfs eza bat lazygit yazi kitty    \
         xdotool xclip maim slop gvfs gvfs-mtp xarchiver polkit polkit-gnome qt6-base     \
@@ -196,7 +209,7 @@ install_deps() {
         dconf gsettings-desktop-schemas xdg-utils xdg-desktop-portal                     \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd       \
         cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting        \
-        glow xcolor tealdeer
+        glow xcolor tealdeer brightnessctl
 }
 
 install_yay() {

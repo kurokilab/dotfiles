@@ -12,6 +12,7 @@ PanelWindow {
         left: true
         right: true
     }
+    margins.top: 6
 
     implicitHeight: Theme.barHeight
     color: "transparent"

@@ -3,7 +3,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -27,7 +27,7 @@ static MAYBE_CONST char *colors[][3] = {
 #define NEW_FLOATING_WINDOWS_APPEAR_UNDER_CURSOR 0 /* spawn new floating windows under the cursor (0 to disable) */
 
 #if GAPS
-static const unsigned int gappx = 5;
+static const unsigned int gappx = 10;
 #endif
 
 #if BAR_HEIGHT

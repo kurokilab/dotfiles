@@ -39,7 +39,7 @@ window {
 }
 
 mainbox {
-    children: [ inputbar, message, listview, mode-switcher ];
+    children: [ inputbar, message, listview ];
     spacing:  0;
     padding:  0;
 }
@@ -48,12 +48,7 @@ inputbar {
     background-color: @bg0-hard;
     padding:          14px 18px;
     spacing:          12px;
-    children:         [ prompt, entry ];
-}
-
-prompt {
-    text-color: @yellow;
-    font:       "JetBrainsMono Nerd Font Bold 11";
+    children:         [ entry ];
 }
 
 entry {
@@ -117,22 +112,4 @@ element-text {
     background-color: transparent;
     text-color:       inherit;
     vertical-align:   0.5;
-}
-
-mode-switcher {
-    background-color: @bg0-hard;
-    border:           1px 0 0 0;
-    border-color:     @bg2;
-    spacing:          0;
-}
-
-button {
-    padding:          10px;
-    text-color:       @fg4;
-    background-color: @bg0-hard;
-}
-
-button selected {
-    text-color:       @bg0-hard;
-    background-color: @blue;
 }

@@ -214,12 +214,16 @@ install_yay() {
 
     local build_dir
     build_dir="$(mktemp -d)"
-    # Always clean the temp clone up, even if makepkg fails under `set -e`.
-    trap 'rm -rf "${build_dir}"' RETURN
 
     echo "   building yay-bin in ${build_dir}"
-    git clone "${YAY_REPO}" "${build_dir}/yay-bin"
-    ( cd "${build_dir}/yay-bin" && makepkg -si --needed --noconfirm )
+    # Build in a subshell with an EXIT trap so the temp clone is always cleaned
+    # up (even if makepkg fails under `set -e`) without leaking a global RETURN
+    # trap that would re-fire on later function returns.
+    (
+        trap 'rm -rf "${build_dir}"' EXIT
+        git clone "${YAY_REPO}" "${build_dir}/yay-bin"
+        cd "${build_dir}/yay-bin" && makepkg -si --needed --noconfirm
+    )
 }
 
 install_aur_deps() {

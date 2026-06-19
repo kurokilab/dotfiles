@@ -1,0 +1,140 @@
+# ~/.config/yazi/theme.toml — managed by dotfiles
+#
+# Gruvbox dark theme for yazi, matching the palette used across the rest of
+# the setup (alacritty, cmus, dunst, cava). These keys override yazi's built-in
+# defaults; section names follow the current schema ([mgr], [pick], [cmp]).
+#
+# Palette reference:
+#   bg0 #282828  bg1 #3c3836  bg2 #504945  bg3 #665c54  bg4 #7c6f64
+#   fg  #ebdbb2  fg4 #a89984  gray #928374
+#   red #fb4934  green #b8bb26  yellow #fabd2f  blue #83a598
+#   purple #d3869b  aqua #8ec07c  orange #fe8019
+
+[mgr]
+cwd             = { fg = "#8ec07c" }
+
+# Hovered / find
+find_keyword    = { fg = "#fabd2f", bold = true, italic = true, underline = true }
+find_position   = { fg = "#d3869b", bg = "reset", bold = true, italic = true }
+
+# Symlink
+symlink_target  = { fg = "#83a598", italic = true }
+
+# Marker (left edge of yanked / selected rows)
+marker_copied   = { fg = "#b8bb26", bg = "#b8bb26" }
+marker_cut      = { fg = "#fb4934", bg = "#fb4934" }
+marker_marked   = { fg = "#8ec07c", bg = "#8ec07c" }
+marker_selected = { fg = "#fabd2f", bg = "#fabd2f" }
+
+# Counts in the status bar
+count_copied    = { fg = "#282828", bg = "#b8bb26" }
+count_cut       = { fg = "#282828", bg = "#fb4934" }
+count_selected  = { fg = "#282828", bg = "#fabd2f" }
+
+# Borders between panes
+border_symbol   = "│"
+border_style    = { fg = "#504945" }
+
+[tabs]
+active    = { fg = "#282828", bg = "#fabd2f", bold = true }
+inactive  = { fg = "#a89984", bg = "#3c3836" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+[mode]
+normal_main = { fg = "#282828", bg = "#83a598", bold = true }
+normal_alt  = { fg = "#83a598", bg = "#3c3836" }
+select_main = { fg = "#282828", bg = "#b8bb26", bold = true }
+select_alt  = { fg = "#b8bb26", bg = "#3c3836" }
+unset_main  = { fg = "#282828", bg = "#fb4934", bold = true }
+unset_alt   = { fg = "#fb4934", bg = "#3c3836" }
+
+[status]
+sep_left      = { open = "", close = "" }
+sep_right     = { open = "", close = "" }
+perm_sep      = { fg = "#928374" }
+perm_type     = { fg = "#b8bb26" }
+perm_read     = { fg = "#fabd2f" }
+perm_write    = { fg = "#fb4934" }
+perm_exec     = { fg = "#8ec07c" }
+progress_label  = { fg = "#ebdbb2", bold = true }
+progress_normal = { fg = "#83a598", bg = "#3c3836" }
+progress_error  = { fg = "#fb4934", bg = "#3c3836" }
+
+[which]
+cols            = 3
+mask            = { bg = "#3c3836" }
+cand            = { fg = "#8ec07c" }
+rest            = { fg = "#928374" }
+desc            = { fg = "#d3869b" }
+separator       = "  "
+separator_style = { fg = "#665c54" }
+
+[confirm]
+border = { fg = "#83a598" }
+title  = { fg = "#fabd2f" }
+btn_yes = { reversed = true }
+btn_no  = {}
+
+[spot]
+border   = { fg = "#83a598" }
+title    = { fg = "#fabd2f" }
+tbl_col  = { fg = "#83a598" }
+tbl_cell = { fg = "#fabd2f", reversed = true }
+
+[notify]
+title_info  = { fg = "#b8bb26" }
+title_warn  = { fg = "#fabd2f" }
+title_error = { fg = "#fb4934" }
+
+[pick]
+border   = { fg = "#83a598" }
+active   = { fg = "#d3869b", bold = true }
+inactive = {}
+
+[input]
+border   = { fg = "#83a598" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[cmp]
+border   = { fg = "#83a598" }
+active   = { reversed = true }
+inactive = {}
+
+[tasks]
+border  = { fg = "#83a598" }
+title   = {}
+hovered = { fg = "#d3869b", bold = true }
+
+[help]
+on      = { fg = "#8ec07c" }
+run     = { fg = "#d3869b" }
+desc    = { fg = "#a89984" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#282828", bg = "#a89984" }
+
+# File-type coloring of the listing
+[filetype]
+rules = [
+	# Media
+	{ mime = "image/*",          fg = "#fabd2f" },
+	{ mime = "{audio,video}/*",  fg = "#d3869b" },
+
+	# Archives
+	{ mime = "application/{zip,gzip,x-tar,x-bzip*,x-7z-compressed,x-rar,xz,zstd}", fg = "#fe8019" },
+
+	# Documents
+	{ mime = "application/{pdf,epub*}",  fg = "#8ec07c" },
+	{ mime = "application/{json,xml}",   fg = "#8ec07c" },
+	{ mime = "text/*",                   fg = "#ebdbb2" },
+
+	# Special states
+	{ url = "*", is = "orphan", fg = "#fb4934" },
+	{ url = "*", is = "exec",   fg = "#b8bb26" },
+
+	# Fallbacks
+	{ url = "*/", fg = "#83a598" },
+	{ url = "*",  fg = "#ebdbb2" },
+]

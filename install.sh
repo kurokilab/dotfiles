@@ -195,7 +195,8 @@ install_deps() {
         qt6-declarative qt6-svg                                                           \
         dconf gsettings-desktop-schemas xdg-utils xdg-desktop-portal                     \
         gnome-themes-extra nodejs npm go gopls clang pyright unzip less ripgrep fd       \
-        cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting
+        cmake kleopatra fzf zoxide zsh-autosuggestions zsh-syntax-highlighting        \
+        glow xcolor tealdeer
 }
 
 install_yay() {

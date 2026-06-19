@@ -1,0 +1,10 @@
+# ~/.config/bat/config — managed by dotfiles
+#
+# gruvbox-dark is one of bat's built-in themes, so it works out of the box with
+# no `bat cache --build` step. Run `bat --list-themes` to see the rest.
+
+--theme="gruvbox-dark"
+
+# Show line numbers and git modifications, but no heavy header/grid chrome so
+# the output stays close to plain `cat` while keeping the gruvbox syntax colours.
+--style="numbers,changes"

@@ -57,6 +57,12 @@ y() {
 [ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# --- tealdeer (tldr) ---
+if command -v tldr >/dev/null 2>&1; then
+    man() { tldr "$@" 2>/dev/null || command man "$@"; }
+fi
+
 # --- other ---
 alias ls="eza --all --icons"
 alias ll="eza -al --icons"
+alias lg=lazygit

@@ -67,8 +67,6 @@ without ly, run `startx`.
 | Wallpaper        | feh                                            |
 | Theming          | Adwaita-dark (GTK 2/3/4, Qt via `gtk3` portal) |
 
-Additional configured applications: cmus, cava, fastfetch.
-
 ## Layout
 
 ```
@@ -103,7 +101,7 @@ Additional configured applications: cmus, cava, fastfetch.
     ├── quickshell/
     ├── yazi/
     ├── Thunar/
-    ├── cmus/  cava/  fastfetch/
+    ├── cmus/  cava/  fastfetch/  bat/
     └── gtk-3.0/  gtk-4.0/
 ```
 
@@ -214,6 +212,18 @@ and vxwm are already in place.
   directories, `zi` for interactive picking). All four are installed from the
   official repos and sourced from `/usr/share/zsh/plugins` and the `fzf`/
   `zoxide` binaries, so there are no extra clones to maintain.
+- Colour picker: `Super+Shift+C` runs `xcolor`, copies the picked pixel's hex
+  to the clipboard (xclip) and confirms via a dunst popup. Cancelling the pick
+  (Esc / right-click) copies and notifies nothing.
+- Markdown preview in yazi is rendered with `glow` (dark style, gruvbox-friendly)
+  via a vendored previewer plugin in `~/.config/yazi/plugins/glow.yazi`; `.md`
+  files still open in Neovim on `Enter` for editing.
+- `bat` uses its built-in `gruvbox-dark` theme (`~/.config/bat/config`, no
+  `bat cache --build` needed) and is aliased to `cat` in `.zshrc`.
+- `man` is wired to tealdeer in `.zshrc`: it shows the concise, example-first
+  `tldr` page and falls back to the full manual when there's no tldr entry
+  (`command man` always reaches the real man(1)). Populate the cache once with
+  `tldr --update`.
 - vxwm is configured at compile time; edit `vxwm/config.h` and re-run the
   installer (or `--skip-deps`) to rebuild.
 

@@ -33,6 +33,16 @@ pdf = [
 	{ run = 'chromium "$@"', orphan = true, desc = "Chromium", for = "unix" },
 ]
 
+[plugin]
+# Render Markdown in the preview pane with glow (gruvbox-friendly "dark" style)
+# instead of yazi's plain-text preview. Opening a .md on <Enter> still routes
+# through the text/* rule below into Neovim for editing.
+prepend_previewers = [
+	{ name = "*.md",       run = "glow" },
+	{ name = "*.markdown", run = "glow" },
+	{ mime = "text/markdown", run = "glow" },
+]
+
 [open]
 prepend_rules = [
 	{ mime = "text/html",            use = "browser" },

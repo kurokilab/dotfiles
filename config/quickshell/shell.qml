@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Io
 
 // Entry point. One Bar per connected screen; Variants rebuilds the set when
 // monitors are plugged or unplugged.

@@ -60,7 +60,7 @@ without ly, run `startx`.
 | Compositor       | picom (egl backend)                            |
 | Status bar       | Quickshell (gruvbox, tags / clock / tray)      |
 | Notifications    | dunst                                          |
-| Launcher         | rofi (gruvbox dark theme)                      |
+| Launcher         | rofi                                           |
 | Editor           | Neovim (lazy.nvim)                             |
 | File managers    | yazi (CLI), Thunar (GUI)                       |
 | Browser          | Chromium (default), Firefox                    |

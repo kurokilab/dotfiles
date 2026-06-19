@@ -6,7 +6,7 @@
     width = 320
     height = (0, 200)
     origin = top-right
-    offset = (22, 60)
+    offset = (22, 56)
     scale = 0
     notification_limit = 5
 

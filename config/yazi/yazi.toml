@@ -38,8 +38,8 @@ pdf = [
 # instead of yazi's plain-text preview. Opening a .md on <Enter> still routes
 # through the text/* rule below into Neovim for editing.
 prepend_previewers = [
-	{ name = "*.md",       run = "glow" },
-	{ name = "*.markdown", run = "glow" },
+	{ url = "*.md",       run = "glow" },
+	{ url = "*.markdown", run = "glow" },
 	{ mime = "text/markdown", run = "glow" },
 ]
 

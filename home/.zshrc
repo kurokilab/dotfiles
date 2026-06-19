@@ -41,18 +41,16 @@ getvideo() {
         -o "$HOME/Videos/Downloads/%(title)s.%(ext)s" "$@"
 }
 
-# --- nnn ---
-export NNN_OPENER="$HOME/.config/nnn/opener"
-
-# wrapper: cd into the directory nnn was in when you quit with `q`
-n() {
-    [ "${NNNLVL:-0}" -eq 0 ] || { echo "nnn is already running"; return; }
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    command nnn -c "$@"
-    if [ -f "$NNN_TMPFILE" ]; then
-        . "$NNN_TMPFILE"
-        rm -f "$NNN_TMPFILE"
+# --- yazi ---
+# `y` runs yazi and cd's into the directory you were in when you quit with `q`.
+y() {
+    local tmp cwd
+    tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+    yazi --cwd-file="$tmp" "$@"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
     fi
+    rm -f -- "$tmp"
 }
 
 # --- zsh-syntax-highlighting (must be sourced last) ---

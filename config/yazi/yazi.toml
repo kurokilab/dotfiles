@@ -1,0 +1,49 @@
+# ~/.config/yazi/yazi.toml — managed by dotfiles
+#
+# Openers mirror the ~/.config/mimeapps.list routing: chromium for
+# web/html, feh for images, vlc for audio, mpv for video, mupdf for PDF/EPUB,
+# Neovim for text/scripts/code. GUI apps are launched detached (orphan = true)
+# so quitting yazi or the terminal never kills them; the editor runs in the
+# foreground (block = true) and takes over the tty until you quit it.
+#
+# These keys/rules are merged on top of yazi's built-in defaults: [opener]
+# merges by name, and prepend_rules are tried before the defaults.
+
+[opener]
+edit = [
+	{ run = '${EDITOR:-nvim} "$@"', block = true, desc = "Neovim", for = "unix" },
+]
+browser = [
+	{ run = 'chromium "$@"', orphan = true, desc = "Chromium", for = "unix" },
+	{ run = 'firefox "$@"',  orphan = true, desc = "Firefox",  for = "unix" },
+]
+image = [
+	{ run = 'feh "$@"', orphan = true, desc = "feh", for = "unix" },
+]
+audio = [
+	{ run = 'vlc "$@"', orphan = true, desc = "VLC", for = "unix" },
+	{ run = 'mpv "$@"', orphan = true, desc = "mpv", for = "unix" },
+]
+video = [
+	{ run = 'mpv "$@"', orphan = true, desc = "mpv", for = "unix" },
+	{ run = 'vlc "$@"', orphan = true, desc = "VLC", for = "unix" },
+]
+pdf = [
+	{ run = 'mupdf "$@"',    orphan = true, desc = "mupdf",    for = "unix" },
+	{ run = 'chromium "$@"', orphan = true, desc = "Chromium", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+	{ mime = "text/html",            use = "browser" },
+	{ mime = "application/xhtml+xml", use = "browser" },
+	{ mime = "text/*",               use = "edit" },
+	{ mime = "application/json",      use = "edit" },
+	{ mime = "application/javascript", use = "edit" },
+	{ mime = "application/xml",       use = "edit" },
+	{ mime = "application/x-shellscript", use = "edit" },
+	{ mime = "image/*",              use = "image" },
+	{ mime = "audio/*",              use = "audio" },
+	{ mime = "video/*",              use = "video" },
+	{ mime = "application/pdf",       use = "pdf" },
+]

@@ -61,7 +61,7 @@ without ly, run `startx`.
 | Notifications    | dunst                                          |
 | Launcher         | dmenu                                          |
 | Editor           | Neovim (lazy.nvim)                             |
-| File managers    | nnn (CLI), Thunar (GUI)                        |
+| File managers    | yazi (CLI), Thunar (GUI)                       |
 | Browser          | Chromium (default), Firefox                    |
 | Wallpaper        | feh                                            |
 | Theming          | Adwaita-dark (GTK 2/3/4, Qt via `gtk3` portal) |
@@ -98,7 +98,7 @@ Additional configured applications: cmus, cava, fastfetch.
     ├── nvim/
     ├── picom/
     ├── dunst/
-    ├── nnn/
+    ├── yazi/
     ├── Thunar/
     ├── cmus/  cava/  fastfetch/
     └── gtk-3.0/  gtk-4.0/
@@ -164,9 +164,9 @@ and vxwm are already in place.
 - Default applications are set in `~/.config/mimeapps.list`, read by
   `xdg-open` and Thunar: Chromium for web pages and URLs, mupdf for PDF/EPUB,
   feh for images, VLC for audio, mpv for video, xarchiver for archives, Neovim
-  for text/scripts/code, and Thunar for directories. These mirror the routing
-  in `~/.config/nnn/opener`, so files open the same way from nnn, Thunar, or
-  any app that calls `xdg-open`.
+  for text/scripts/code, and Thunar for directories. These mirror the openers
+  in `~/.config/yazi/yazi.toml`, so files open the same way from yazi, Thunar,
+  or any app that calls `xdg-open`.
 - Text files and scripts open in Neovim via a custom
   `~/.local/share/applications/nvim.desktop` wrapper that runs `alacritty -e
   nvim` with `Terminal=false`. This overrides the stock `nvim.desktop` (whose
@@ -180,6 +180,10 @@ and vxwm are already in place.
 - `.zshrc` provides two yt-dlp wrappers: `getaudio <url>` extracts audio as
   mp3 into `~/Music/Downloads`, and `getvideo <url>` downloads best
   video+audio into `~/Videos/Downloads`.
+- The CLI file manager is yazi. Run it with `y`, a wrapper that quits into the
+  directory you last browsed (press `q` to quit, `Q` to quit without cd'ing).
+  Its openers live in `~/.config/yazi/yazi.toml` and mirror the routing in
+  `~/.config/mimeapps.list`.
 - The shell is augmented with zsh-autosuggestions (history-based inline
   suggestions), zsh-syntax-highlighting, fzf (`Ctrl+R` history, `Ctrl+T`
   files, `Alt+C` cd), and zoxide (`z <dir>` jumps to frequently used

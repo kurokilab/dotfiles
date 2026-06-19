@@ -2,7 +2,7 @@
 #
 # Read by xdg-open and GUI file managers (Thunar) to decide which program
 # opens a given file type or URL scheme. Kept in sync with the routing in
-# ~/.config/nnn/opener: chromium for web/html, feh for images, vlc for audio,
+# ~/.config/yazi/yazi.toml: chromium for web/html, feh for images, vlc for audio,
 # mpv for video, mupdf for PDF/EPUB, xarchiver for archives, thunar for dirs.
 #
 # Lives at ~/.config/mimeapps.list (synced by install.sh).

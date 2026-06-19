@@ -13,12 +13,12 @@
 	<directories/>
 </action>
 <action>
-	<icon>nnn</icon>
-	<name>Open NNN Here</name>
+	<icon>yazi</icon>
+	<name>Open yazi Here</name>
 	<submenu></submenu>
-	<unique-id>open-nnn-here</unique-id>
-	<command>alacritty --working-directory %f -e nnn</command>
-	<description>Open the nnn file manager in the selected folder</description>
+	<unique-id>open-yazi-here</unique-id>
+	<command>alacritty --working-directory %f -e yazi</command>
+	<description>Open the yazi file manager in the selected folder</description>
 	<range></range>
 	<patterns>*</patterns>
 	<startup-notify/>

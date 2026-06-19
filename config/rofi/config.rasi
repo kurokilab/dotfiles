@@ -1,0 +1,15 @@
+/* rofi configuration — behaviour lives here, looks live in gruvbox-dark.rasi */
+configuration {
+    modi:                "drun,run,window";
+    show-icons:          true;
+    icon-theme:          "Adwaita";
+    display-drun:        "  Apps";
+    display-run:         "  Run";
+    display-window:      "  Win";
+    drun-display-format: "{name}";
+    window-format:       "{w}  {c}  {t}";
+    terminal:            "alacritty";
+    kb-cancel:           "Escape,Super+d";
+}
+
+@theme "gruvbox-dark"

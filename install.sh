@@ -188,7 +188,7 @@ install_deps() {
         xdotool xclip maim slop gvfs gvfs-mtp xarchiver polkit polkit-gnome qt6-base     \
         ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono       \
         ttf-jetbrains-mono noto-fonts-emoji arandr nano btop alacritty ly feh picom      \
-        tree neovim fail2ban obsidian chromium keepassxc dmenu dunst libnotify           \
+        tree neovim fail2ban obsidian chromium keepassxc dmenu rofi dunst libnotify       \
         zsh curl ufw networkmanager mpv vlc mupdf cmus cava 7zip fastfetch ffmpeg        \
         pavucontrol udisks2 udiskie firefox xdg-desktop-portal-gtk yt-dlp                \
         thunar thunar-volman thunar-archive-plugin tumbler ffmpegthumbnailer zenity      \

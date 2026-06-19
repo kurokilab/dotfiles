@@ -60,7 +60,7 @@ without ly, run `startx`.
 | Compositor       | picom (egl backend)                            |
 | Status bar       | Quickshell (gruvbox, tags / clock / tray)      |
 | Notifications    | dunst                                          |
-| Launcher         | dmenu                                          |
+| Launcher         | rofi (gruvbox dark theme)                      |
 | Editor           | Neovim (lazy.nvim)                             |
 | File managers    | yazi (CLI), Thunar (GUI)                       |
 | Browser          | Chromium (default), Firefox                    |
@@ -73,33 +73,34 @@ Additional configured applications: cmus, cava, fastfetch.
 
 ```
 .
-├── install.sh           installer / updater
-├── wallpapers/          wallpapers synced into ~/Wallpapers (default: default-3.png)
-├── home/                files installed into ~
-│   ├── .local/bin/      helper scripts           → ~/.local/bin
-│   │   ├── setwall      wallpaper restore/randomizer
-│   │   ├── screenshot   region screenshot
-│   │   └── volume       volume control + on-screen popup
-│   ├── .local/share/applications/  .desktop launchers → ~/.local/share/applications
-│   │   └── nvim.desktop Neovim-in-Alacritty wrapper (Terminal=false)
-│   ├── .xinitrc         X session startup        → ~/.xinitrc
-│   ├── .zshrc           shell configuration      → ~/.zshrc
-│   ├── .gitconfig       global git configuration → ~/.gitconfig
-│   └── gtkrc-2.0        GTK2 dark theme          → ~/.gtkrc-2.0
+├── install.sh                       installer / updater
+├── wallpapers/                      wallpapers synced into ~/Wallpapers
+├── home/                            files installed into ~
+│   ├── .local/bin/                  helper scripts           → ~/.local/bin
+│   │   ├── setwall                  wallpaper restore/randomizer
+│   │   ├── screenshot               region screenshot
+│   │   └── volume                   volume control + on-screen popup
+│   ├── .local/share/applications/
+│   │   └── nvim.desktop             Neovim-in-Alacritty wrapper (Terminal=false)
+│   ├── .xinitrc                     X session startup        → ~/.xinitrc
+│   ├── .zshrc                       shell configuration      → ~/.zshrc
+│   ├── .gitconfig                   global git configuration → ~/.gitconfig
+│   └── gtkrc-2.0                    GTK2 dark theme          → ~/.gtkrc-2.0
 ├── vxwm/
-│   └── config.h         vxwm build-time configuration
+│   └── config.h                     vxwm build-time configuration
 ├── ly/
-│   └── config.ini       ly display manager config → /etc/ly/config.ini
+│   └── config.ini                   ly display manager config → /etc/ly/config.ini
 ├── x11/
-│   └── 30-libinput.conf mouse/touchpad settings   → /etc/X11/xorg.conf.d/
-└── config/              mirrored into ~/.config
-    ├── mimeapps.list    default app associations  → ~/.config/mimeapps.list
+│   └── 30-libinput.conf             mouse/touchpad settings   → /etc/X11/xorg.conf.d/
+└── config/                          mirrored into ~/.config
+    ├── mimeapps.list                default app associations  → ~/.config/mimeapps.list
     ├── alacritty/
-    ├── git/             global git ignore        → ~/.config/git/ignore
+    ├── git/                         global git ignore        → ~/.config/git/ignore
     ├── nvim/
     ├── picom/
+    ├── rofi/
     ├── dunst/
-    ├── quickshell/      gruvbox status bar (QML)
+    ├── quickshell/
     ├── yazi/
     ├── Thunar/
     ├── cmus/  cava/  fastfetch/
@@ -179,8 +180,9 @@ and vxwm are already in place.
   (`qt6-base`, `qt6-declarative`, `qt6-svg`) comes from the official repos. The
   tag readout relies on vxwm's `EWMH_TAGS` module and the strut on
   `EXTERNAL_BARS`, both enabled by default in vxwm's `modules.def.h`.
-- Application launch keys: `Super+Return` opens Alacritty, `Super+D` the dmenu
-  launcher, `Super+W` Chromium, `Super+E` Thunar, and `Super+O` Obsidian.
+- Application launch keys: `Super+Return` opens Alacritty, `Super+D` the rofi
+  launcher (drun mode, gruvbox dark — config in `~/.config/rofi`), `Super+W`
+  Chromium, `Super+E` Thunar, and `Super+O` Obsidian.
 - The Qt platform theme is forced to `gtk3` so Qt apps follow the GTK dark
   theme.
 - Default applications are set in `~/.config/mimeapps.list`, read by

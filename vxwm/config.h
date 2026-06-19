@@ -124,6 +124,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-b", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+/* application launcher: rofi in drun mode, themed gruvbox dark (~/.config/rofi) */
+static const char *roficmd[] = { "rofi", "-show", "drun", NULL };
 
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *obsidiancmd[] = { "obsidian", NULL };
@@ -157,7 +159,7 @@ static const char *zoomreset[] = { "vcompmgr", "-Z", "1", NULL }; // set zoom to
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd } },
     { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = obsidiancmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = chromiumcmd } },

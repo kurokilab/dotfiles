@@ -1,0 +1,13 @@
+# ~/.config/yazi/keymap.toml — managed by dotfiles
+#
+# These keys are merged on top of yazi's built-in defaults via prepend_keymap,
+# so they take precedence over the defaults.
+
+[mgr]
+prepend_keymap = [
+	# Enter enters a directory instead of opening it in $EDITOR.
+	# yazi's default folder rule is { url = "*/", use = ["edit", ...] }, so a
+	# bare `open` on a folder would launch nvim; smart-enter routes folders to
+	# `enter` and only files to `open`.
+	{ on = "<Enter>", run = "plugin smart-enter", desc = "Enter the directory, or open the file" },
+]
